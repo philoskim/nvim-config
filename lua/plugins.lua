@@ -53,12 +53,7 @@ function M.setup()
     }
 
     -- Startup screen
-    use {
-      "goolord/alpha-nvim",
-      config = function()
-        require("config.alpha").setup()
-      end,
-    }
+    use { "mhinz/vim-startify" }
 
     -- Telescope
     use {
@@ -292,7 +287,7 @@ function M.setup()
         require'config.lsp'.setup()
       end,
     }
-    
+
     -- Bootstrap Neovim
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

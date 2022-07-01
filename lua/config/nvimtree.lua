@@ -4,9 +4,10 @@ function M.setup()
   require("nvim-tree").setup {
     disable_netrw = true,
     hijack_netrw = true,
+    open_on_setup = true,
     view = {
-      number = true,
-      relativenumber = true,
+      side = "left",
+      width = 30,
     },
     filters = {
       custom = { ".git" },
