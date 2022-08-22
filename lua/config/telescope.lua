@@ -81,6 +81,7 @@ function M.setup()
       },
       shorten_path = true,
       only_sort_text = true,
+      scroll_strategy = "limit",  -- default: "cycle"
 
       prompt_prefix = " ",
       selection_caret = " ",
@@ -89,6 +90,12 @@ function M.setup()
       mappings = keymappings,
     },
     pickers = {
+      live_grep = {
+        only_sort_text = true,
+      },
+      grep_string = {
+        only_sort_text = true,
+      },
     },
     extensions = {
       fzf = {

@@ -202,6 +202,15 @@ function M.setup()
       end,
     }
 
+    -- toggleterm
+   use {
+     "akinsho/toggleterm.nvim",
+     tag = 'v2.*',
+     config = function()
+       require("config.toggleterm").setup()
+      end,
+   }
+
     -- Buffer line
     use {
       "akinsho/nvim-bufferline.lua",
@@ -287,6 +296,9 @@ function M.setup()
         require'config.lsp'.setup()
       end,
     }
+
+   use 'Olical/conjure'
+
 
     -- Bootstrap Neovim
     if packer_bootstrap then

@@ -7,9 +7,9 @@ api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
 g.maplocalleader = ","
 
-opt.tabstop = 4 
+opt.tabstop = 4
 opt.expandtab = true
-opt.shiftwidth = 4 
+opt.shiftwidth = 4
 opt.autoindent = true
 opt.smartindent = true
 
@@ -21,12 +21,17 @@ opt.mouse = "a" --Enable mouse mode
 opt.breakindent = true --Enable break indent
 opt.undofile = true --Save undo history
 opt.ignorecase = true --Case insensitive searching unless /C or capital in search
-opt.smartcase = true -- Smart case
+opt.smartcase = false -- Smart case
 opt.updatetime = 250 --Decrease update time
 opt.signcolumn = "yes" -- Always show sign column
 opt.clipboard = "unnamedplus" -- Access system clipboard
 opt.timeoutlen = 300 --	Time in milliseconds to wait for a mapped sequence to complete.
 opt.showmode = false -- Do not need to show the mode. We use the statusline instead.
+
+opt.iskeyword:append("-") -- <cword>에 - 문지 추가
+opt.splitbelow = true
+opt.splitright = true
+
 
 -- Highlight on yank
 vim.cmd [[
