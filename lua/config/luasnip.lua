@@ -8,7 +8,15 @@ function M.setup()
     updateevents = "TextChanged,TextChangedI",
   }
 
-  require("luasnip/loaders/from_vscode").load()
+  -- Lazy load snippets
+  require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_snipmate").lazy_load()
+
+  -- Load custom typescript snippets
+  require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets/javascript" } }
+  require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets/python" } }
+
+  luasnip.filetype_extend("all", { "_" })
 end
 
 return M

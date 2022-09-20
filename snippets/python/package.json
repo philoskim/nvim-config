@@ -1,0 +1,26 @@
+{
+  "name": "python-snippets",
+  "displayName": "python-snippets",
+  "description": "Python Snippets",
+  "version": "0.0.1",
+  "publisher": "philoskim",
+  "icon": "images/python.png",
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "snippets",
+    "python"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./base.json"
+      }
+    ]
+  }
+}

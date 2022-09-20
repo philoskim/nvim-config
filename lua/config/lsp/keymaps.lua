@@ -30,6 +30,7 @@ local function keymappings(client, bufnr)
   buf_keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- Formatting in nvim lsp
   buf_keymap(bufnr, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_keymap(bufnr, 'v', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   -- Get information about language servers attached to neovim
   buf_keymap(bufnr, 'n', '<leader>li', '<cmd>LspInfo<CR>', opts)
 
@@ -85,3 +86,4 @@ function M.setup(client, bufnr)
 end
 
 return M
+

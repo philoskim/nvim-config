@@ -1,0 +1,17 @@
+{
+    "d2": {
+        "prefix": ";d2",
+        "body": ["Log.debug2(f'{${1:placeholder} = }')", "$0"],
+        "description" : "Log.debug2"
+    },
+    "dbg": {
+        "prefix": ";dbg",
+        "body": ["Util.dbg(${1:placeholder}, '${1:placeholder}')", "$0"],
+        "description" : "Util.dbg"
+    },
+    "dbgf": {
+        "prefix": ";dbgf",
+        "body": ["Util.dbgf(${1:placeholder}, '${1:placeholder}')", "$0"],
+        "description" : "Util.dbgf"
+    }
+}

@@ -297,6 +297,14 @@ function M.setup()
       end,
     }
 
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+          require("config.lsp.null-ls").setup()
+      end,
+      requires = { "nvim-lua/plenary.nvim" },
+    }
+
    use 'Olical/conjure'
 
 

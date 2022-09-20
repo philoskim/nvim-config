@@ -1,0 +1,26 @@
+{
+  "name": "javascript-snippets",
+  "displayName": "javascript-snippets",
+  "description": "Javascript Snippets",
+  "version": "0.0.1",
+  "publisher": "philoskim",
+  "icon": "images/javascript.png",
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "snippets",
+    "javascript"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./base.json"
+      }
+    ]
+  }
+}
