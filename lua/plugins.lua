@@ -136,13 +136,13 @@ function M.setup()
       end,
       disable = true,
     }
-    use {
-      "ggandor/lightspeed.nvim",
-      keys = { "s", "S", "f", "F", "t", "T" },
-      config = function()
-        require("lightspeed").setup {}
-      end,
-    }
+    -- use {
+    --   "ggandor/lightspeed.nvim",
+    --   keys = { "s", "S", "f", "F", "t", "T" },
+    --   config = function()
+    --     require("lightspeed").setup {}
+    --   end,
+    -- }
 
     -- Status line
     use {
