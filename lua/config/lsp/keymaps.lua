@@ -37,9 +37,9 @@ local function keymappings(client, bufnr)
   -- Highlight symbol under the cursor using nvim lsp
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
-      hi! LspReferenceRead cterm=bold ctermbg=235 guibg=LightYellow guifg=Black
-      hi! LspReferenceText cterm=bold ctermbg=235 guibg=LightYellow guifg=Black
-      hi! LspReferenceWrite cterm=bold ctermbg=235 guibg=LightYellow guifg=Black
+      hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+      hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+      hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
     ]]
     vim.api.nvim_create_augroup('lsp_document_highlight', {})
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {

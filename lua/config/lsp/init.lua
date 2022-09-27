@@ -47,7 +47,8 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 function M.setup()
   require('lspconfig')['pyright'].setup({
@@ -58,6 +59,7 @@ function M.setup()
 
   require('lspconfig')['tsserver'].setup{
       on_attach = on_attach,
+      capabilities = capabilities,
       flags = lsp_flags,
   }
 

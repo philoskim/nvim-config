@@ -10,6 +10,8 @@ vim.cmd([[
   Plug 'junegunn/fzf'
   " Plug 'liuchengxu/vim-clap'
 
+  Plug 'junegunn/vim-easy-align'
+
   Plug 'guns/vim-sexp',    {'for': 'clojure'}
   Plug 'liquidz/vim-iced', {'for': 'clojure'}
 
@@ -17,4 +19,11 @@ vim.cmd([[
 
   " Enable vim-iced's default key mapping
   let g:iced_enable_default_key_mappings = v:true
+
+
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
 ]])
