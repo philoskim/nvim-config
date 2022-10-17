@@ -26,7 +26,13 @@ function M.setup()
         border = "Normal",
         background = "Normal",
       },
-    }
+    },
+    winbar = {
+      enabled = true,
+      name_formatter = function(term) --  term: Terminal
+        return term.name
+      end
+    },
   }
 end
 
@@ -43,21 +49,20 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
-function _LAZYGIT_TOGGLE()
-	lazygit:toggle()
+local bash = Terminal:new({ cmd='bash', hidden=true, direction='float' })
+function _bash_toggle()
+	bash:toggle()
 end
 
-local node = Terminal:new({ cmd = "node", hidden = true })
-
-function _NODE_TOGGLE()
+local node = Terminal:new({ cmd='node', hidden=true, direction='float' })
+function _node_toggle()
 	node:toggle()
 end
 
-local python = Terminal:new({ cmd = "python", hidden = true })
+local python = Terminal:new({ cmd='python', hidden=true, direction='float' })
 
-function _PYTHON_TOGGLE()
+function _python_toggle()
 	python:toggle()
 end
 

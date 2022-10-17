@@ -99,10 +99,11 @@ function M.setup()
       flags = lsp_flags,
   }
 
-  -- require('lspconfig')['clojure-lsp'].setup{
-  --     on_attach = on_attach,
-  --     flags = lsp_flags,
-  -- }
+  require('lspconfig')['clojure_lsp'].setup{
+      on_attach = on_attach,
+      capabilities = capabilities,
+      flags = lsp_flags,
+  }
 
   lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",

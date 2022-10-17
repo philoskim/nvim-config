@@ -96,6 +96,13 @@ function M.setup()
       u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
 
+    t = {
+      name = "Terminal",
+      b = { "<cmd>lua _bash_toggle()<cr>", "Bash" },
+      n = { "<cmd>lua _node_toggle()<cr>", "Node" },
+      p = { "<cmd>lua _python_toggle()<cr>", "Python" },
+    },
+
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
