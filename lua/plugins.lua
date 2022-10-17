@@ -287,13 +287,28 @@ function M.setup()
 
     use {
       'stevearc/aerial.nvim',
-      config = function() require('aerial').setup() end
+      config = function()
+        require('aerial').setup()
+      end
     }
 
     use {
-      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+      requires = {
+        'williamboman/mason-lspconfig.nvim',
+        'neovim/nvim-lspconfig',
+      },
       config = function()
+        require("mason").setup()
+        require("mason-lspconfig").setup()
         require'config.lsp'.setup()
+      end,
+    }
+
+    use {
+      'williamboman/mason-lspconfig.nvim',
+      config = function()
+        require("mason-lspconfig").setup()
       end,
     }
 
