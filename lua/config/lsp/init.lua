@@ -19,7 +19,7 @@ local function on_attach(client, bufnr)
   -- See `:help formatexpr` for more information.
   vim.api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd [[
       hi! LspReferenceRead cterm=bold ctermbg=235 guibg=#45403d
       hi! LspReferenceText cterm=bold ctermbg=235 guibg=#45403d
@@ -38,8 +38,46 @@ local function on_attach(client, bufnr)
     })
   end
 
+  -- Highlight symbol under the cursor using nvim lsp
+  if client.server_capabilities.document_highlight then
+    vim.cmd [[
+      hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+      hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+      hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+    ]]
+    vim.api.nvim_create_augroup('lsp_document_highlight', {})
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = 'lsp_document_highlight',
+      buffer = 0,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      group = 'lsp_document_highlight',
+      buffer = 0,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
+
+  -- Severity signs in nvim lsp diagnostics
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  -- Configuration of virtual and floating text
+  vim.diagnostic.config({
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+        show_header = true,
+        source = 'if_many',
+        border = 'rounded',
+        focusable = true,
+    },
+  })
+
   require("aerial").on_attach(client, bufnr)
-  require("config.lsp.keymaps").setup(client, bufnr)
 end
 
 local lsp_flags = {

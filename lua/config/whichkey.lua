@@ -30,7 +30,7 @@ function M.setup()
   }
 
   --- normal mode
-  local opts = {
+  local normal_opts = {
     mode = "n", -- Normal mode
     prefix = "<leader>",
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -39,7 +39,16 @@ function M.setup()
     nowait = false, -- use `nowait` when creating keymaps
   }
 
-  local mappings = {
+  local visual_opts = {
+    mode = "v", -- Normal mode
+    prefix = "<leader>",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  }
+
+  local normal_mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["W"] = { "<cmd>wa<CR>", "Save all" },
     ["q"] = { "<cmd>qa<CR>", "Quit" },
@@ -64,6 +73,21 @@ function M.setup()
       r = { "<cmd>Telescope resume<cr>", "Resume" },
     },
 
+     l = {
+       name = "Lsp",
+       c = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code action' },
+       d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition'  },
+       D = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostics' },
+       -- D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
+       f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Formatting' },
+       h = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
+       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+       r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'References' },
+       R = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
+       s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature' },
+       S = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Symbol' },
+    },
+
     p = {
       name = "Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -80,8 +104,16 @@ function M.setup()
     },
   }
 
+  local visual_mappings = {
+    l = {
+      name = 'Lsp',
+      f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting' },
+    },
+  }
+
   whichkey.setup(conf)
-  whichkey.register(mappings, opts)
+  whichkey.register(normal_mappings, normal_opts)
+  whichkey.register(visual_mappings, visual_opts)
 
 
   --- visual mode

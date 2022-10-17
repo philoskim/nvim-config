@@ -13,5 +13,12 @@
         "prefix": ";dbgf",
         "body": ["Util.dbgf(${1:expr}, '${1:expr}')", "$0"],
         "description" : "Util.dbgf"
+    },
+    "co": {
+        "prefix": ";co",
+        "body": ["#< 물리적 위험성 구현 일시중단으로 인해 comment out"],
+        "description" : "comment out"
     }
+
+
 }
