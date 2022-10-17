@@ -286,13 +286,6 @@ function M.setup()
     }
 
     use {
-      'stevearc/aerial.nvim',
-      config = function()
-        require('aerial').setup()
-      end
-    }
-
-    use {
       'williamboman/mason.nvim',
       requires = {
         'williamboman/mason-lspconfig.nvim',
@@ -302,6 +295,17 @@ function M.setup()
         require("mason").setup()
         require("mason-lspconfig").setup()
         require'config.lsp'.setup()
+      end,
+    }
+
+    use {
+      'glepnir/lspsaga.nvim',
+      branch = 'main',
+      config = function()
+          local saga = require('lspsaga')
+          saga.init_lsp_saga({
+              -- your configuration
+          })
       end,
     }
 
@@ -320,7 +324,7 @@ function M.setup()
       requires = { "nvim-lua/plenary.nvim" },
     }
 
-   use 'Olical/conjure'
+   --use 'Olical/conjure'
 
 
     -- Bootstrap Neovim

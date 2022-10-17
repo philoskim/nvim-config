@@ -53,7 +53,7 @@ function M.setup()
     ["W"] = { "<cmd>wa<CR>", "Save all" },
     ["q"] = { "<cmd>qa<CR>", "Quit" },
     ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-    ["o"] = { "<cmd>AerialToggle<cr>", "Outline" },
+    ["o"] = { "<cmd>LSoutlineToggle<cr>", "Outline" },
 
     b = {
       name = "Buffer",
@@ -75,17 +75,15 @@ function M.setup()
 
      l = {
        name = "Lsp",
-       c = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code action' },
-       d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition'  },
-       D = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostics' },
+       c = { '<cmd>Lspsaga code_action<CR>', 'Code action' },
+       d = { '<cmd>Lspsaga lsp_finder<CR>', 'Definition' },
+       D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },
        -- D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
        f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Formatting' },
-       h = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
+       h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover' },
        i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
-       r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'References' },
-       R = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
-       s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature' },
-       S = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Symbol' },
+       r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
+       t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
     },
 
     p = {

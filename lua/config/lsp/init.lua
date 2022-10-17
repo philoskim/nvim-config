@@ -76,8 +76,6 @@ local function on_attach(client, bufnr)
         focusable = true,
     },
   })
-
-  require("aerial").on_attach(client, bufnr)
 end
 
 local lsp_flags = {
