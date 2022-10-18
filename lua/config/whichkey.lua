@@ -39,15 +39,6 @@ function M.setup()
     nowait = false, -- use `nowait` when creating keymaps
   }
 
-  local visual_opts = {
-    mode = "v", -- Normal mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  }
-
   local normal_mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["W"] = { "<cmd>wa<CR>", "Save all" },
@@ -109,6 +100,15 @@ function M.setup()
     },
   }
 
+  local visual_opts = {
+    mode = "v", -- Normal mode
+    prefix = "<leader>",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  }
+
   local visual_mappings = {
     l = {
       name = 'Lsp',
@@ -123,18 +123,18 @@ function M.setup()
 
   --- visual mode
   local keymap = vim.keymap.set
-  local visual_opts = { noremap = true, silent = true }
+  local visual_opts2 = { noremap = true, silent = true }
   local tb =  require('telescope.builtin')
 
   keymap('v', '<leader>fb', function()
 	  local text = getVisualSelection()
 	  tb.current_buffer_fuzzy_find({ default_text = text })
-  end, visual_opts)
+  end, visual_opts2)
 
   keymap('v', '<leader>fg', function()
     local text = getVisualSelection()
     tb.grep_string({ search = text })
-  end, visual_opts)
+  end, visual_opts2)
 end
 
 return M
