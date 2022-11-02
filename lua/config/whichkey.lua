@@ -64,16 +64,22 @@ function M.setup()
       r = { "<cmd>Telescope resume<cr>", "Resume" },
     },
 
+    i = {
+      name = "Iced",
+      c = { "<cmd>IcedConnect<cr>", "Connect" },
+    },
+
      l = {
        name = "Lsp",
        c = { '<cmd>Lspsaga code_action<CR>', 'Code action' },
-       d = { '<cmd>Lspsaga lsp_finder<CR>', 'Definition' },
+       d = { '<cmd>Lspsaga peek_definition<CR>', 'Definition' },
        D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },
        -- D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
        f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Formatting' },
        h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover' },
        i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
        r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
+       s = { '<cmd>Lspsaga lsp_finder<CR>', 'Symbol' },
        t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
     },
 
@@ -89,14 +95,10 @@ function M.setup()
 
     t = {
       name = "Terminal",
+      c = { "<cmd>lua _clojure_toggle()<cr>", "Clojure" },
       b = { "<cmd>lua _bash_toggle()<cr>", "Bash" },
       n = { "<cmd>lua _node_toggle()<cr>", "Node" },
       p = { "<cmd>lua _python_toggle()<cr>", "Python" },
-    },
-
-    g = {
-      name = "Git",
-      s = { "<cmd>Neogit<CR>", "Status" },
     },
   }
 

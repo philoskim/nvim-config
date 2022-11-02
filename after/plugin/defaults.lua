@@ -71,6 +71,8 @@ function! s:trim_trailing_whitespace() abort
   call winrestview(l:view)
 endfunction
 
+autocmd FileType clojure set iskeyword-=/
+
 augroup trim_spaces
   autocmd!
   autocmd BufWritePre * call <SID>trim_trailing_whitespace()

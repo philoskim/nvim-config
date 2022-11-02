@@ -21,9 +21,13 @@ local function on_attach(client, bufnr)
 
   -- Highlight symbol under the cursor using nvim lsp
   if client.server_capabilities.documentHighlightProvider then
+    -- vim.cmd [[
+    --   hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+    --   hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+    --   hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+    -- ]]
     vim.cmd [[
       hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
-      hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
       hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
     ]]
     vim.api.nvim_create_augroup('lsp_document_highlight', {})
