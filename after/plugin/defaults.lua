@@ -32,7 +32,6 @@ opt.iskeyword:append("-") -- <cword>에 - 문지 추가
 opt.splitbelow = true
 opt.splitright = true
 
-
 -- Highlight on yank
 vim.cmd [[
   augroup YankHighlight
@@ -64,6 +63,17 @@ vim.cmd [[
   set foldexpr=nvim_treesitter#foldexpr()
 ]]
 
+
+function init_clojure()
+  opt.iskeyword:remove("/")
+
+  opt.tabstop = 2
+  opt.expandtab = true
+  opt.shiftwidth = 2
+  opt.autoindent = true
+  opt.smartindent = true
+end
+
 vim.cmd [[
 function! s:trim_trailing_whitespace() abort
   let l:view = winsaveview()
@@ -71,7 +81,11 @@ function! s:trim_trailing_whitespace() abort
   call winrestview(l:view)
 endfunction
 
-autocmd FileType clojure set iskeyword-=/
+augroup clojure
+  autocmd FileType clojure lua init_clojure()
+  autocmd BufWritePost *.clj IcedRequire
+  " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
+augroup END
 
 augroup trim_spaces
   autocmd!

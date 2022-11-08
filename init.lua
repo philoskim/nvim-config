@@ -20,7 +20,7 @@ vim.cmd([[
   let g:iced_enable_default_key_mappings = v:true
   let g:iced_default_key_mapping_leader = '<LocalLeader>'
   let g:sexp_enable_insert_mode_mappings = 0
-  let g:iced#buffer#stdout#mods = "vertical"
+  " let g:iced#buffer#stdout#mods = "vertical"
 
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   xmap ga <Plug>(EasyAlign)
