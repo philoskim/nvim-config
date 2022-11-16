@@ -40,10 +40,9 @@ function M.setup()
   }
 
   local normal_mappings = {
-    ["w"] = { "<cmd>update!<CR>", "Save" },
-    ["W"] = { "<cmd>wa<CR>", "Save all" },
+    ["s"] = { "<cmd>update!<CR>", "Save" },
+    ["S"] = { "<cmd>wa<CR>", "Save all" },
     ["q"] = { "<cmd>qa<CR>", "Quit" },
-    ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
     ["o"] = { "<cmd>LSoutlineToggle<cr>", "Outline" },
 
     b = {
@@ -51,6 +50,22 @@ function M.setup()
       b = { "<cmd>Telescope buffers sort_mru=true<cr>", "Buffers" },
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
+    },
+
+    e = {
+      name = "Eval",
+      e = { "<plug>(iced_eval_outer_top_list)", "Outermost" },
+      b = { "<plug>(iced_require)", "Buffer" },
+      m = { "mA", "Mark" },
+
+      -- r = { '<plug>(iced_eval_at_mark)', "Re-eval" },
+      r = { "<plug>(iced_stdout_buffer_clear)<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Clear & Re-eval" },
+      R = { "<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Re-eval" },
+      i = { "<plug>(iced_eval)<plug>(sexp_inner_element)", "Inner" },
+      o = { "<plug>(iced_eval)<plug>(sexp_outer_element)", "Outer" },
+      q = { "<plug>(iced_interrupt)", "Interrupt" },
+      t = { "<plug>(iced_stdout_buffer_toggle)", "Toggle stdout" },
+      c = { "<plug>(iced_stdout_buffer_clear)", "Clear" },
     },
 
     f = {
@@ -89,11 +104,26 @@ function M.setup()
     },
 
     t = {
-      name = "Terminal",
+      name = "Toggle",
+      t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
       c = { "<cmd>lua _clojure_toggle()<cr>", "Clojure" },
       b = { "<cmd>lua _bash_toggle()<cr>", "Bash" },
       n = { "<cmd>lua _node_toggle()<cr>", "Node" },
       p = { "<cmd>lua _python_toggle()<cr>", "Python" },
+    },
+
+    w = {
+      name = "Wrap/Win",
+      h = { "<C-w>h", "Left window" },
+      l = { "<C-w>l", "Right window" },
+      j = { "<C-w>j", "Lower window" },
+      k = { "<C-w>k", "Upper window" },
+      c = { "<C-w>c", "Close window" },
+      s = { "<cmd>split<cr>", "Split window" },
+      v = { "<cmd>vsplit", "Vsplit window" },
+
+      w = { "<localleader>i", "Wrap" },
+      u = { "<localleader>I", "Unwrap" },
     },
   }
 
