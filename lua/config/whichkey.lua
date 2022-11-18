@@ -104,7 +104,7 @@ function M.setup()
     },
 
     t = {
-      name = "Toggle",
+      name = "Toggle Window",
       t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
       c = { "<cmd>lua _clojure_toggle()<cr>", "Clojure" },
       b = { "<cmd>lua _bash_toggle()<cr>", "Bash" },
@@ -122,8 +122,8 @@ function M.setup()
       s = { "<cmd>split<cr>", "Split window" },
       v = { "<cmd>vsplit", "Vsplit window" },
 
-      w = { "<localleader>i", "Wrap" },
-      u = { "<localleader>I", "Unwrap" },
+      w = { "<plug>(sexp_round_head_wrap_element)", "Wrap element" },
+      r = { "<plug>(sexp_raise_element)", "Raise element" },
     },
   }
 
