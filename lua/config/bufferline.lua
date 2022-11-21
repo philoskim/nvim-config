@@ -1,18 +1,30 @@
 local M = {}
 
+local getbufinfo = vim.fn.getbufinfo
+
+local function sort_by_mru(buf_a, buf_b)
+  local bufinfo_a = getbufinfo(buf_a.id)
+  local bufinfo_b = getbufinfo(buf_b.id)
+  --print(bufinfo_a[1].lastused)
+
+  return bufinfo_a[1].lastused < bufinfo_b[1].lastused
+end
+
 function M.setup()
   require("bufferline").setup {
     options = {
       numbers = "none",
-      diagnostics = "nvim_lsp",
+      themable = true,
+      --diagnostics = "nvim_lsp",
       separator_style = "slant" or "padded_slant",
       show_tab_indicators = true,
       show_buffer_close_icons = true,
       show_close_icon = true,
+      sort_by = sort_by_mru,
       highlights = {
         buffer_selected = {
-          guifg = { attribute = "fg", highlight = "#000000" },
-          guibg = { attribute = "bg", highlight = "#ffffff" },
+          fg = "#000000",
+          bg = "#ffffff",
         },
       },
     },
