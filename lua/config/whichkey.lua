@@ -15,13 +15,13 @@ local function getVisualSelection()
 	end
 end
 
-local function getBufExtension()
+local function getFileExtension()
   local currBufName = api.nvim_buf_get_name(0)
   return vim.fn.matchstr(currBufName, "\\.\\w\\+$")
 end
 
 function insertDbg()
-  local extension = getBufExtension()
+  local extension = getFileExtension()
 
   if extension == ".clj" or extension == ".cljc" then
     vim.cmd('execute "normal" "idbg\\<Esc>w=="')
@@ -31,7 +31,7 @@ function insertDbg()
 end
 
 function insertDbgn()
-  local extension = getBufExtension()
+  local extension = getFileExtension()
 
   if extension == ".clj" or extension == ".cljc" then
     vim.cmd('execute "normal" "idbgn\\<Esc>w=="')
