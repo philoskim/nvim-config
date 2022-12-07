@@ -1,3 +1,5 @@
+local api = vim.api
+
 local M = {}
 
 local function getVisualSelection()
@@ -11,6 +13,35 @@ local function getVisualSelection()
 	else
 		return ''
 	end
+end
+
+local function getBufExtension()
+  local currBufName = api.nvim_buf_get_name(0)
+  return vim.fn.matchstr(currBufName, "\\.\\w\\+$")
+end
+
+function insertDbg()
+  local extension = getBufExtension()
+
+  if extension == ".clj" or extension == ".cljc" then
+    vim.cmd('execute "normal" "idbg\\<Esc>w=="')
+  elseif extension == ".cljs" then
+    vim.cmd('execute "normal" "iclog\\<Esc>w=="')
+  end
+end
+
+function insertDbgn()
+  local extension = getBufExtension()
+
+  if extension == ".clj" or extension == ".cljc" then
+    vim.cmd('execute "normal" "idbgn\\<Esc>w=="')
+  elseif extension == ".cljs" then
+    vim.cmd('execute "normal" "iclogn\\<Esc>w=="')
+  end
+end
+
+function clearDbg()
+  vim.cmd('execute "normal" "\\<Esc>w=="')
 end
 
 function M.setup()
@@ -52,6 +83,13 @@ function M.setup()
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
     },
 
+    d = {
+      name = "Debug",
+      d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr>", "dbg/clog" },
+      n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr>", "dbgn/clogn" },
+      c = { "<plug>(sexp_raise_element)<cmd>lua clearDbg()<cr>", "Clear dbg" },
+    },
+
     e = {
       name = "Eval",
       e = { "<plug>(iced_eval_outer_top_list)", "Outermost" },
@@ -59,7 +97,8 @@ function M.setup()
       m = { "mA", "Mark" },
 
       -- r = { '<plug>(iced_eval_at_mark)', "Re-eval" },
-      r = { "<plug>(iced_stdout_buffer_clear)<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Clear & Re-eval" },
+      r = { "<plug>(iced_stdout_buffer_clear)<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>",
+            "Clear & Re-eval" },
       R = { "<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Re-eval" },
       i = { "<plug>(iced_eval)<plug>(sexp_inner_element)", "Inner" },
       o = { "<plug>(iced_eval)<plug>(sexp_outer_element)", "Outer" },
@@ -85,7 +124,7 @@ function M.setup()
       d = { '<cmd>Lspsaga peek_definition<CR>', 'Definition' },
       D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },
       -- D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
-      f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Formatting' },
+      f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
       h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover' },
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
       r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
@@ -114,16 +153,17 @@ function M.setup()
 
     w = {
       name = "Wrap/Win",
-      h = { "<C-w>h", "Left window" },
-      l = { "<C-w>l", "Right window" },
-      j = { "<C-w>j", "Lower window" },
-      k = { "<C-w>k", "Upper window" },
+      h = { "<C-w>h", "to Left window" },
+      j = { "<C-w>j", "to Lower window" },
+      k = { "<C-w>k", "to Upper window" },
+      l = { "<C-w>l", "to Right window" },
+      H = { "<C-w>H", "window to Left" },
+      J = { "<C-w>J", "window to Lower" },
+      K = { "<C-w>K", "window to Upper" },
+      L = { "<C-w>L", "window to Right" },
       c = { "<C-w>c", "Close window" },
       s = { "<cmd>split<cr>", "Split window" },
       v = { "<cmd>vsplit", "Vsplit window" },
-
-      w = { "<plug>(sexp_round_head_wrap_element)", "Wrap element" },
-      r = { "<plug>(sexp_raise_element)", "Raise element" },
     },
   }
 

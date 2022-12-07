@@ -5,7 +5,6 @@ local getbufinfo = vim.fn.getbufinfo
 local function sort_by_mru(buf_a, buf_b)
   local bufinfo_a = getbufinfo(buf_a.id)
   local bufinfo_b = getbufinfo(buf_b.id)
-  --print(bufinfo_a[1].lastused)
 
   return bufinfo_a[1].lastused < bufinfo_b[1].lastused
 end
