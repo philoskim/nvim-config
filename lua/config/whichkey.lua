@@ -40,7 +40,7 @@ function insertDbgn()
   end
 end
 
-function clearDbg()
+function removeDbg()
   vim.cmd('execute "normal" "\\<Esc>w=="')
 end
 
@@ -87,7 +87,7 @@ function M.setup()
       name = "Debug",
       d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr>", "dbg/clog" },
       n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr>", "dbgn/clogn" },
-      c = { "<plug>(sexp_raise_element)<cmd>lua clearDbg()<cr>", "Clear dbg" },
+      r = { "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>", "Remove dbg" },
     },
 
     e = {
@@ -95,8 +95,6 @@ function M.setup()
       e = { "<plug>(iced_eval_outer_top_list)", "Outermost" },
       b = { "<plug>(iced_require)", "Buffer" },
       m = { "mA", "Mark" },
-
-      -- r = { '<plug>(iced_eval_at_mark)', "Re-eval" },
       r = { "<plug>(iced_stdout_buffer_clear)<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>",
             "Clear & Re-eval" },
       R = { "<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Re-eval" },
@@ -104,7 +102,7 @@ function M.setup()
       o = { "<plug>(iced_eval)<plug>(sexp_outer_element)", "Outer" },
       q = { "<plug>(iced_interrupt)", "Interrupt" },
       t = { "<plug>(iced_stdout_buffer_toggle)", "Toggle stdout" },
-      c = { "<plug>(iced_stdout_buffer_clear)", "Clear" },
+      c = { "<plug>(iced_stdout_buffer_clear)", "Clear stdout" },
     },
 
     f = {
@@ -125,7 +123,7 @@ function M.setup()
       D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },
       -- D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
       f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
-      h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover' },
+      h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover doc' },
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
       r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
       s = { '<cmd>Lspsaga lsp_finder<CR>', 'Symbol' },
@@ -152,7 +150,7 @@ function M.setup()
     },
 
     w = {
-      name = "Wrap/Win",
+      name = "Window",
       h = { "<C-w>h", "to Left window" },
       j = { "<C-w>j", "to Lower window" },
       k = { "<C-w>k", "to Upper window" },
