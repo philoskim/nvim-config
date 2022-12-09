@@ -74,6 +74,7 @@ function M.setup()
     ["s"] = { "<cmd>update!<CR>", "Save" },
     ["S"] = { "<cmd>wa<CR>", "Save all" },
     ["q"] = { "<cmd>qa<CR>", "Quit" },
+    ["Q"] = { "<cmd>qa!<CR>", "Quit" },
     ["o"] = { "<cmd>LSoutlineToggle<cr>", "Outline" },
 
     b = {
@@ -85,9 +86,12 @@ function M.setup()
 
     d = {
       name = "Debug",
-      d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr>", "dbg/clog" },
-      n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr>", "dbgn/clogn" },
-      r = { "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>", "Remove dbg" },
+      d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>",
+            "Insert dbg/clog" },
+      n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>",
+            "Insert dbgn/clogn" },
+      r = { "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>",
+            "Remove dbg(n)/clog(n)" },
     },
 
     e = {
