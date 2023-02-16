@@ -28,7 +28,7 @@ function M.setup()
           nvim_lsp = "[Lsp]",
           buffer = "[Buffer]",
           -- nvim_lua = "[Lua]",
-          -- treesitter = "[Treesitter]",
+          treesitter = "[Treesitter]",
         })[entry.source.name]
         return vim_item
       end,
@@ -83,18 +83,17 @@ function M.setup()
       { name = "luasnip" },
       { name = 'nvim_lsp' },
       { name = "buffer" },
-      -- { name = "treesitter" },
-      -- { name = "nvim_lua" },
-      -- { name = "path" },
+      { name = "treesitter" },
+      { name = "nvim_lua" },
+      { name = "path" },
     },
   }
 
-  -- Use buffer source for `/`
-  -- cmp.setup.cmdline("/", {
-  --   sources = {
-  --     { name = "buffer" },
-  --   },
-  -- })
+  cmp.setup.cmdline("/", {
+    sources = {
+      { name = "buffer" },
+    },
+  })
 
   -- Use cmdline & path source for ':'
   cmp.setup.cmdline(":", {

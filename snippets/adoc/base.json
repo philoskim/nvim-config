@@ -1,7 +1,7 @@
 {
     "li": {
         "prefix": ";li",
-        "body": ["[listing]\n----\n----\n", "$0"],
+        "body": ["[listing]\n----\n$0\n----\n"],
         "description" : "listing"
     }
 }

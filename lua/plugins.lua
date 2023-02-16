@@ -302,10 +302,7 @@ function M.setup()
       'glepnir/lspsaga.nvim',
       branch = 'main',
       config = function()
-          local saga = require('lspsaga')
-          saga.init_lsp_saga({
-              -- your configuration
-          })
+          require('lspsaga').setup({})
       end,
     }
 
@@ -323,6 +320,8 @@ function M.setup()
       end,
       requires = { "nvim-lua/plenary.nvim" },
     }
+
+    use 'simrat39/rust-tools.nvim'
 
     -- Bootstrap Neovim
     if packer_bootstrap then

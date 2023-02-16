@@ -74,8 +74,7 @@ function M.setup()
     ["s"] = { "<cmd>update!<CR>", "Save" },
     ["S"] = { "<cmd>wa<CR>", "Save all" },
     ["q"] = { "<cmd>qa<CR>", "Quit" },
-    ["Q"] = { "<cmd>qa!<CR>", "Quit" },
-    ["o"] = { "<cmd>LSoutlineToggle<cr>", "Outline" },
+    ["Q"] = { "<cmd>qa!<CR>", "Quit all" },
 
     b = {
       name = "Buffer",
@@ -86,9 +85,9 @@ function M.setup()
 
     d = {
       name = "Debug",
-      d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>",
+      d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>w",
             "Insert dbg/clog" },
-      n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>",
+      n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>w",
             "Insert dbgn/clogn" },
       r = { "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>",
             "Remove dbg(n)/clog(n)" },
@@ -122,13 +121,14 @@ function M.setup()
 
     l = {
       name = "Lsp",
-      c = { '<cmd>Lspsaga code_action<CR>', 'Code action' },
-      d = { '<cmd>Lspsaga peek_definition<CR>', 'Definition' },
+      c = { '<cmd>Lspsaga incoming_calls<CR>', 'Call hierachy' },
+      d = { '<cmd>Lspsaga peek_definition<CR>', 'Peek definition' },
       D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },
-      -- D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
       f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
+      g = { '<cmd>Lspsaga goto_definition<CR>', 'Goto definition' },
       h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover doc' },
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+      o = { '<cmd>Lspsaga outline<CR>', 'Outline' },
       r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
       s = { '<cmd>Lspsaga lsp_finder<CR>', 'Symbol' },
       t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
