@@ -32,6 +32,7 @@ opt.iskeyword:append("-") -- <cword>에 - 문지 추가
 opt.splitbelow = true
 opt.splitright = true
 opt.wrap = true
+opt.updatetime=300
 
 -- Highlight on yank
 vim.cmd [[

@@ -136,13 +136,6 @@ function M.setup()
       end,
       disable = true,
     }
-    -- use {
-    --   "ggandor/lightspeed.nvim",
-    --   keys = { "s", "S", "f", "F", "t", "T" },
-    --   config = function()
-    --     require("lightspeed").setup {}
-    --   end,
-    -- }
 
     -- Status line
     use {
@@ -152,16 +145,6 @@ function M.setup()
         require("config.lualine").setup()
       end,
       requires = { "nvim-web-devicons" },
-    }
-
-    use {
-      "SmiteshP/nvim-gps",
-      requires = "nvim-treesitter/nvim-treesitter",
-      module = "nvim-gps",
-      wants = "nvim-treesitter",
-      config = function()
-        require("nvim-gps").setup()
-      end,
     }
 
     -- Treesitter
@@ -266,7 +249,7 @@ function M.setup()
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
+        -- "hrsh7th/cmp-nvim-lsp-signature-help",
         -- "ray-x/cmp-treesitter",
         -- "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",

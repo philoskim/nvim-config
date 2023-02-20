@@ -121,6 +121,7 @@ function M.setup()
 
     l = {
       name = "Lsp",
+      a = { '<cmd>lua require("lsp_signature").toggle_float_win()<CR>', 'Api signature' },
       c = { '<cmd>Lspsaga incoming_calls<CR>', 'Call hierachy' },
       d = { '<cmd>Lspsaga peek_definition<CR>', 'Peek definition' },
       D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },

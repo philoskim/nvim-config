@@ -8,6 +8,7 @@ lsp_signature.setup {
   handler_opts = {
     border = "rounded",
   },
+  toggle_key = '<f2>',
 }
 
 local function on_attach(client, bufnr)
@@ -21,22 +22,18 @@ local function on_attach(client, bufnr)
 
   -- Highlight symbol under the cursor using nvim lsp
   if client.server_capabilities.documentHighlightProvider then
-    -- vim.cmd [[
-    --   hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
-    --   hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
-    --   hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
-    -- ]]
     vim.cmd [[
       hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+      hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
       hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
     ]]
     vim.api.nvim_create_augroup('lsp_document_highlight', {})
-    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+    vim.api.nvim_create_autocmd({'CursorHold'}, {
       group = 'lsp_document_highlight',
       buffer = 0,
       callback = vim.lsp.buf.document_highlight,
     })
-    vim.api.nvim_create_autocmd('CursorMoved', {
+    vim.api.nvim_create_autocmd({'CursorMoved', 'CursorHoldI'}, {
       group = 'lsp_document_highlight',
       buffer = 0,
       callback = vim.lsp.buf.clear_references,
