@@ -119,6 +119,12 @@ function M.setup()
       r = { "<cmd>Telescope resume<cr>", "Resume" },
     },
 
+    g = {
+      name = "Git",
+      b = { "<cmd>GitBlameToggle<cr>", "Blame" },
+      t = { "<cmd>lua _lazygit_toggle()<cr>", "lazygit Terminal" },
+    },
+
     l = {
       name = "Lsp",
       a = { '<cmd>lua require("lsp_signature").toggle_float_win()<CR>', 'Api signature' },

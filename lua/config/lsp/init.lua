@@ -2,14 +2,14 @@ local M = {}
 
 local lsp = vim.lsp
 
-local lsp_signature = require "lsp_signature"
-lsp_signature.setup {
-  bind = true,
-  handler_opts = {
-    border = "rounded",
-  },
-  toggle_key = '<f2>',
-}
+-- local lsp_signature = require "lsp_signature"
+-- lsp_signature.setup {
+--   bind = true,
+--   handler_opts = {
+--     border = "rounded",
+--   },
+--   toggle_key = '<f5>',
+-- }
 
 local function on_attach(client, bufnr)
   -- Enable completion triggered by <C-X><C-O>
@@ -23,9 +23,9 @@ local function on_attach(client, bufnr)
   -- Highlight symbol under the cursor using nvim lsp
   if client.server_capabilities.documentHighlightProvider then
     vim.cmd [[
-      hi! LspReferenceRead cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
-      hi! LspReferenceText cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
-      hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=DarkGray guifg=Black
+      hi! LspReferenceRead cterm=bold ctermbg=254 guibg=#505050 guifg=white
+      hi! LspReferenceText cterm=bold ctermbg=254 guibg=#505050 guifg=white
+      hi! LspReferenceWrite cterm=bold ctermbg=254 guibg=#505050 guifg=white
     ]]
     vim.api.nvim_create_augroup('lsp_document_highlight', {})
     vim.api.nvim_create_autocmd({'CursorHold'}, {

@@ -38,7 +38,7 @@ end
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  -- vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
@@ -61,17 +61,31 @@ function _node_toggle()
 end
 
 local python = Terminal:new({ cmd='python', hidden=true, direction='float' })
-
 function _python_toggle()
 	python:toggle()
 end
 
 
 local clojure = Terminal:new({ cmd='iced repl', hidden=true, direction='float' })
-
 function _clojure_toggle()
 	clojure:toggle()
 end
 
+-- 참고: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+local lazygit_opts = {
+  cmd = 'lazygit',
+  hidden = true,
+  direction = 'tab',
+  on_open = function (term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>",
+                                {noremap = true, silent = true})
+  end,
+}
+
+local lazygit = Terminal:new(lazygit_opts)
+function _lazygit_toggle()
+	lazygit:toggle()
+end
 
 return M

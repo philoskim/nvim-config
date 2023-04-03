@@ -21,7 +21,13 @@ vim.cmd([=[
   Plug 'natebosch/vim-lsc'
   Plug 'natebosch/vim-lsc-dart'
 
+  Plug 'f-person/git-blame.nvim'
+
   call plug#end()
+
+  let g:gitblame_enabled = 0
+  let g:gitblame_highlight_group = "Question"
+  let g:gitblame_date_format = '%y/%m/%d %H:/%M'
 
   " Enable vim-iced's default key mapping
   let g:iced_enable_default_key_mappings = v:true

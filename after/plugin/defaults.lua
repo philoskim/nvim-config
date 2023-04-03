@@ -80,7 +80,7 @@ function init_asciidoc()
   opt.textwidth = 90
   vim.cmd [[
     " ^M 지운 후, textwidth에 맞게 한 줄 reformat한다.
-    nnoremap <F2> :s/<C-V><C-M>/ /g<cr> gqj<cr>
+    nnoremap <F2> :s/<C-V><C-M>/\r/g<cr> gqj<cr>
   ]]
 end
 
@@ -100,6 +100,10 @@ augroup END
 
 augroup asciidoc
   autocmd FileType asciidoc lua init_asciidoc()
+augroup END
+
+augroup plaintex
+  autocmd FileType plaintex lua init_asciidoc()
 augroup END
 
 augroup trim_spaces
