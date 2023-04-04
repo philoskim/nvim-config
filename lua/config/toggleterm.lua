@@ -38,7 +38,7 @@ end
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
-  -- vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
@@ -77,9 +77,9 @@ local lazygit_opts = {
   hidden = true,
   direction = 'tab',
   on_open = function (term)
+    local opts = {noremap = true, silent = true}
     vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>",
-                                {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<esc>', "<Nop>", opts)
   end,
 }
 
