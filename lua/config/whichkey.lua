@@ -40,6 +40,14 @@ function insertDbgn()
   end
 end
 
+function insertClog()
+  vim.cmd('execute "normal" "iclog\\<Esc>w=="')
+end
+
+function insertClogn()
+  vim.cmd('execute "normal" "iclogn\\<Esc>w=="')
+end
+
 function removeDbg()
   vim.cmd('execute "normal" "\\<Esc>w=="')
 end
@@ -85,6 +93,12 @@ function M.setup()
 
     d = {
       name = "Debug",
+      c = { name = "clog(n)",
+            c = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClog()<cr><esc>w",
+                  "Insert clog" },
+            n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClogn()<cr><esc>w",
+                  "Insert clogn" },
+          },
       d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>w",
             "Insert dbg/clog" },
       n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>w",

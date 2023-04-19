@@ -1,0 +1,32 @@
+{
+    "dc": {
+        "prefix": ";dc",
+        "body": ["(use 'debux.core)$0"],
+        "description" : "debux.core"
+    },
+    "dcs": {
+        "prefix": ";dcs",
+        "body": ["(require [debux.cs.core :refer-macros [clog clogn]]))$0 "],
+        "description" : "debux.cs.core"
+    },
+    "ec": {
+        "prefix": ";ec",
+        "body": ["#?(:clj (use 'debux.electric))$0"],
+        "description" : "debux.electric"
+    },
+    "ecs": {
+        "prefix": ";ecs",
+        "body": ["#?(:cljs (require [debux.cs.electric :refer-macros [clog clogn dbg dbgn]]))$0 "],
+        "description" : "debux.cs.electric"
+    },
+    "ld": {
+        "prefix": ";ld",
+        "body": ["[philoskim/debux \"0.8.3\"]$0 "],
+        "description" : "lein debux"
+    },
+    "dd": {
+        "prefix": ";dd",
+        "body": ["philoskim/debux {:mvn/version \"0.8.3\"}$0 "],
+        "description" : "deps debux"
+    }
+}

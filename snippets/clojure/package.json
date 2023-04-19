@@ -1,0 +1,26 @@
+{
+  "name": "clojure-snippets",
+  "displayName": "clojure-snippets",
+  "description": "Clojure Snippets",
+  "version": "0.0.1",
+  "publisher": "philoskim",
+  "icon": "images/clojure.png",
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "snippets",
+    "clojure"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "clojure",
+        "path": "./base.json"
+      }
+    ]
+  }
+}
