@@ -16,7 +16,7 @@
     },
     "ecs": {
         "prefix": ";ecs",
-        "body": ["#?(:cljs (require [debux.cs.electric :refer-macros [clog clogn dbg dbgn]]))$0 "],
+        "body": ["#?(:cljs [debux.cs.electric :refer-macros [clog clogn dbg dbgn]])$0 "],
         "description" : "debux.cs.electric"
     },
     "ld": {

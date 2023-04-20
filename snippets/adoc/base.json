@@ -3,5 +3,10 @@
         "prefix": ";li",
         "body": ["[listing]\n----\n$0\n----\n"],
         "description" : "listing"
+    },
+    "cd": {
+        "prefix": ";cd",
+        "body": ["[source]\n----\n$0\n----\n"],
+        "description" : "coding"
     }
 }
