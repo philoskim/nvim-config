@@ -72,7 +72,7 @@ function _python_toggle()
 end
 
 
-local clojure = Terminal:new({ cmd='iced repl', hidden=true, direction='float' })
+local clojure = Terminal:new({ cmd='iced repl -A:dev', hidden=true, direction='float' })
 function _clojure_toggle()
 	clojure:toggle()
 end

@@ -14,6 +14,7 @@ vim.cmd([=[
   Plug 'junegunn/vim-easy-align'
   Plug 'guns/vim-sexp',    {'for': 'clojure'}
   Plug 'liquidz/vim-iced', {'for': 'clojure'}
+  Plug 'liquidz/vim-iced-multi-session', {'for': 'clojure'}
 
   " Dart/Flutter
   Plug 'dart-lang/dart-vim-plugin'
@@ -33,7 +34,14 @@ vim.cmd([=[
   let g:iced_enable_default_key_mappings = v:true
   let g:iced_default_key_mapping_leader = '<LocalLeader>'
   let g:sexp_enable_insert_mode_mappings = 0
+  let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
   let g:iced#format#rule = {
+    \ '#"hyperfiddle.electric-dom2/"': '[[:inner 0]]',
+    \ 'hyperfiddle.electric/def': '[[:inner 0]]',
+    \ 'hyperfiddle.electric/defn': '[[:inner 0]]',
+    \ 'hyperfiddle.electric/fn': '[[:inner 0]]',
+    \ 'hyperfiddle.electric/server': '[[:inner 0]]',
+    \ 'hyperfiddle.electric/client': '[[:inner 0]]',
     \ '>defn': '[[:inner 0]]',
     \ '>defn-': '[[:inner 0]]',
     \ 'metapdf.helper/when-mlet': '[[:block 1]]',
@@ -50,6 +58,10 @@ vim.cmd([=[
     \ 'metapdf.helper/keep-indexed-let': '[[:block 1]]',
     \ 'metapdf.helper/doseq-indexed': '[[:block 1]]',
   \ }
+  let g:iced#format#options = {
+    \ 'remove-surrounding-whitespace?': v:false
+    \ }
+  let g:iced_multi_session#does_switch_session = v:true
 
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   xmap ga <Plug>(EasyAlign)

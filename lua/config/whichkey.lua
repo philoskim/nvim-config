@@ -199,10 +199,22 @@ function M.setup()
     nowait = false, -- use `nowait` when creating keymaps
   }
 
+  range_format = function()
+    local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+    local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+    vim.lsp.buf.format({
+      range = {
+        ["start"] = { start_row, 0 },
+        ["end"] = { end_row, 0 },
+      },
+    })
+  end
+
   local visual_mappings = {
     l = {
       name = 'Lsp',
-      f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting' },
+      f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
+      --f = { '<cmd>lua range_format()<CR>', 'Format' },
     },
   }
 
@@ -225,6 +237,8 @@ function M.setup()
     local text = getVisualSelection()
     tb.grep_string({ search = text })
   end, visual_opts2)
+
+  --keymap('v', 'gq', range_format)
 end
 
 return M
