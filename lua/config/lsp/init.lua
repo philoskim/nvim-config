@@ -41,7 +41,8 @@ local function on_attach(client, bufnr)
   end
 
   -- Severity signs in nvim lsp diagnostics
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  --local signs = { Error = " ", Warn = " ", Hint = "💡" , Info = " " }
+  local signs = { Error = "e ", Warn = "w ", Hint = "h ", Info = "i " }
   for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -50,7 +51,7 @@ local function on_attach(client, bufnr)
   -- Configuration of virtual and floating text
   vim.diagnostic.config({
     virtual_text = false,
-    severity_sort = true,
+    --severity_sort = true,
     float = {
         show_header = true,
         source = 'if_many',

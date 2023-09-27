@@ -52,6 +52,22 @@ function removeDbg()
   vim.cmd('execute "normal" "\\<Esc>w=="')
 end
 
+function printEval()
+  vim.cmd [[
+    let save_cb = &cb
+    let regInfo = getreginfo('x')
+
+    try
+      execute "normal" "[[%"
+      let evaled = getreg('x')
+      execute "normal" "o" . evaled
+    finally
+        let &cb = save_cb
+        call setreg('x', regInfo)
+    endtry
+  ]]
+end
+
 function M.setup()
   local whichkey = require "which-key"
 
@@ -117,6 +133,10 @@ function M.setup()
       R = { "<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Re-eval" },
       i = { "<plug>(iced_eval)<plug>(sexp_inner_element)", "Inner" },
       o = { "<plug>(iced_eval)<plug>(sexp_outer_element)", "Outer" },
+      p = { '"x<localleader>ee<cmd>lua printEval()<cr>',
+            "Print eval" },
+      -- p = { "<plug>(iced_eval_outer_top_list)<cmd>lua printEval()<cr>",
+      --       "Print eval" },
       q = { "<plug>(iced_interrupt)", "Interrupt" },
       t = { "<plug>(iced_stdout_buffer_toggle)", "Toggle stdout" },
       c = { "<plug>(iced_stdout_buffer_clear)", "Clear stdout" },
@@ -186,7 +206,7 @@ function M.setup()
       L = { "<C-w>L", "window to Right" },
       c = { "<C-w>c", "Close window" },
       s = { "<cmd>split<cr>", "Split window" },
-      v = { "<cmd>vsplit", "Vsplit window" },
+      v = { "<cmd>vsplit<cr>", "Vsplit window" },
     },
   }
 
@@ -222,6 +242,11 @@ function M.setup()
   whichkey.register(normal_mappings, normal_opts)
   whichkey.register(visual_mappings, visual_opts)
 
+
+  --- normal and visual mode
+  vim.cmd [[
+    noremap 9 $
+  ]]
 
   --- visual mode
   local keymap = vim.keymap.set

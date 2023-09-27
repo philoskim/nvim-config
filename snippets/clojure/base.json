@@ -6,23 +6,44 @@
     },
     "dcs": {
         "prefix": ";dcs",
-        "body": ["(require [debux.cs.core :refer-macros [clog clogn]]))$0 "],
+        "body": ["[debux.cs.core :refer-macros [clog clogn]] $0"],
         "description" : "debux.cs.core"
     },
-    "ec": {
-        "prefix": ";ec",
-        "body": ["#?(:clj (use 'debux.electric))$0"],
-        "description" : "debux.electric"
+    "jsi": {
+        "prefix": ";jsi",
+        "body": ["[applied-science.js-interop :as j]"],
+        "description": "js interop"
     },
-    "ecs": {
-        "prefix": ";ecs",
-        "body": ["#?(:cljs [debux.cs.electric :refer-macros [clog clogn dbg dbgn]])$0 "],
-        "description" : "debux.cs.electric"
+    "rf": {
+        "prefix": ";rf",
+        "body": ["[re-frame.core :as rf]$0"],
+        "description" : "re-frame"
     },
-    "ld": {
-        "prefix": ";ld",
+    "rs": {
+        "prefix": ";rs",
+        "body": ["(rf/reg-sub :$0",
+                 "  (fn [db [_ ]]",
+                 "    (get-in db )))"],
+        "description" : "reg-sub"
+    },
+    "red": {
+        "prefix": ";red",
+        "body": ["(rf/reg-event-db :$0",
+                 "  (fn [db [_ ]]",
+                 "    (assoc-in db )))"],
+        "description" : "reg-event-db"
+    },
+    "ref": {
+        "prefix": ";ref",
+        "body": ["(rf/reg-event-fx :$0",
+                 "  (fn [fxes [_ ]]",
+                 "    {}))"],
+        "description" : "reg-event-fx"
+    },
+    "pd": {
+        "prefix": ";pd",
         "body": ["[philoskim/debux \"0.8.3\"]$0 "],
-        "description" : "lein debux"
+        "description" : "project debux"
     },
     "dd": {
         "prefix": ";dd",
