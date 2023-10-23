@@ -83,6 +83,18 @@ function M.setup()
       end,
     }
 
+    -- Gitblame
+    use {
+      "f-person/git-blame.nvim",
+      config = function()
+        require('gitblame').setup {
+          enabled = false,
+          highlight_group = "Question",
+          date_format = '%y/%m/%d %H:/%M'
+        }
+      end,
+    }
+
     -- WhichKey
     use {
       "folke/which-key.nvim",
