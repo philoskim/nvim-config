@@ -40,14 +40,14 @@
                  "    {}))"],
         "description" : "reg-event-fx"
     },
-    "pd": {
-        "prefix": ";pd",
-        "body": ["[philoskim/debux \"0.8.3\"]$0 "],
-        "description" : "project debux"
+    "ld": {
+        "prefix": ";ld",
+        "body": ["[philoskim/debux \"0.9.1\"]$0 "],
+        "description" : "lein debux"
     },
     "dd": {
         "prefix": ";dd",
-        "body": ["philoskim/debux {:mvn/version \"0.8.3\"}$0 "],
+        "body": ["philoskim/debux {:mvn/version \"0.9.1\"}$0 "],
         "description" : "deps debux"
     }
 }

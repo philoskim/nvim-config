@@ -208,10 +208,15 @@ function M.setup()
       s = { "<cmd>split<cr>", "Split window" },
       v = { "<cmd>vsplit<cr>", "Vsplit window" },
     },
+
+   ['='] = {
+     name ="Format",
+     ['='] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format buffer"},
+   },
   }
 
   local visual_opts = {
-    mode = "v", -- Normal mode
+    mode = "v", -- Visual mode
     prefix = "<leader>",
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true, -- use `silent` when creating keymaps
@@ -227,14 +232,15 @@ function M.setup()
         ["start"] = { start_row, 0 },
         ["end"] = { end_row, 0 },
       },
+      async = true,
     })
   end
 
   local visual_mappings = {
     l = {
       name = 'Lsp',
-      f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
-      --f = { '<cmd>lua range_format()<CR>', 'Format' },
+      -- f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
+      f = { '<cmd>lua range_format()<CR>', 'Format' },
     },
   }
 
@@ -243,13 +249,21 @@ function M.setup()
   whichkey.register(visual_mappings, visual_opts)
 
 
+  --- etc key bindings
+  local keymap = vim.keymap.set
+
+  --- normal mode
+  -- keymap('n', '==', function()
+  --   vim.inspect('called')
+  --   vim.lsp.buf.format()
+  -- end, {noremap=true})
+
   --- normal and visual mode
   vim.cmd [[
     noremap 9 $
   ]]
 
   --- visual mode
-  local keymap = vim.keymap.set
   local visual_opts2 = { noremap = true, silent = true }
   local tb =  require('telescope.builtin')
 
