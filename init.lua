@@ -4,24 +4,22 @@ require("plugins").setup()
 -- vim-plug
 vim.cmd([=[
   call plug#begin()
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'Yggdroot/hiPairs'
 
-  " vim-iced
-  " Select one of following
-  " Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'junegunn/fzf'
-  " Plug 'liuchengxu/vim-clap'
+    Plug 'guns/vim-sexp', {'for': 'clojure'}
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-surround'
 
-  Plug 'junegunn/vim-easy-align'
-  Plug 'guns/vim-sexp',    {'for': 'clojure'}
-  Plug 'liquidz/vim-iced', {'for': 'clojure'}
-  Plug 'liquidz/vim-iced-multi-session', {'for': 'clojure'}
+    Plug 'liquidz/vim-iced', {'for': 'clojure'}
+    Plug 'liquidz/vim-iced-multi-session', {'for': 'clojure'}
 
-  " Dart/Flutter
-  Plug 'dart-lang/dart-vim-plugin'
-  Plug 'thosakwe/vim-flutter'
-  Plug 'natebosch/vim-lsc'
-  Plug 'natebosch/vim-lsc-dart'
-
+    " Dart/Flutter
+    Plug 'dart-lang/dart-vim-plugin'
+    Plug 'thosakwe/vim-flutter'
+    Plug 'natebosch/vim-lsc'
+    Plug 'natebosch/vim-lsc-dart'
   call plug#end()
 
   " Enable vim-iced's default key mapping
@@ -30,6 +28,8 @@ vim.cmd([=[
   let g:sexp_enable_insert_mode_mappings = 0
   let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
   let g:iced_multi_session#does_switch_session = v:true
+
+  let g:hiPairs_enable_matchParen = 1
 
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   xmap ga <Plug>(EasyAlign)

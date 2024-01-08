@@ -85,30 +85,30 @@ function init_asciidoc()
 end
 
 vim.cmd [[
-function! s:trim_trailing_whitespace() abort
-  let l:view = winsaveview()
-  keeppatterns %substitute/\m\s\+$//e
-  call winrestview(l:view)
-endfunction
+  function! s:trim_trailing_whitespace() abort
+    let l:view = winsaveview()
+    keeppatterns %substitute/\m\s\+$//e
+    call winrestview(l:view)
+  endfunction
 
-augroup clojure
-  autocmd FileType clojure lua init_clojure()
-  autocmd BufWritePost *.clj IcedRequire
-  autocmd BufWritePost *.cljc IcedRequire
-  " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
-augroup END
+  augroup clojure
+    autocmd FileType clojure lua init_clojure()
+    autocmd BufWritePost *.clj IcedRequire
+    autocmd BufWritePost *.cljc IcedRequire
+    " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
+  augroup END
 
-augroup asciidoc
-  autocmd FileType asciidoc lua init_asciidoc()
-augroup END
+  augroup asciidoc
+    autocmd FileType asciidoc lua init_asciidoc()
+  augroup END
 
-augroup plaintex
-  autocmd FileType plaintex lua init_asciidoc()
-augroup END
+  augroup plaintex
+    autocmd FileType plaintex lua init_asciidoc()
+  augroup END
 
-augroup trim_spaces
-  autocmd!
-  autocmd BufWritePre * call <SID>trim_trailing_whitespace()
-augroup END
+  augroup trim_spaces
+    autocmd!
+    autocmd BufWritePre * call <SID>trim_trailing_whitespace()
+  augroup END
 ]]
 
