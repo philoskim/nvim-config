@@ -30,6 +30,13 @@ vim.cmd([=[
   let g:iced_multi_session#does_switch_session = v:true
 
   let g:hiPairs_enable_matchParen = 1
+  let g:hiPairs_hl_matchPair = {'term'    : 'underline,bold',
+                \               'cterm'   : 'bold',
+                \               'ctermfg' : '0',
+                \               'ctermbg' : '180',
+                \               'gui'     : 'bold',
+                \               'guifg'   : '#f7b008',
+                \               'guibg'   : 'Black' }
 
   " Start interactive EasyAlign in visual mode (e.g. vipga)
   xmap ga <Plug>(EasyAlign)
