@@ -9,6 +9,7 @@ vim.cmd([=[
     Plug 'Yggdroot/hiPairs'
 
     Plug 'guns/vim-sexp', {'for': 'clojure'}
+    Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
 
