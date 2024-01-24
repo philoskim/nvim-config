@@ -261,11 +261,7 @@ function M.setup()
   --- normal and visual mode
   vim.cmd [[
     noremap 9 $
-    noremap <h <Plug>(sexp_insert_at_list_head)
-    noremap >l <Plug>(sexp_insert_at_list_tail)
-    noremap <H <Plug>(sexp_round_head_wrap_list)
-    noremap >L <Plug>(sexp_round_tail_wrap_list)
-  ]]
+   ]]
 
   --- visual mode
   local visual_opts2 = { noremap = true, silent = true }
