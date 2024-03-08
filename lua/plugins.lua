@@ -125,7 +125,6 @@ function M.setup()
     -- Better Comment
     use {
       "numToStr/Comment.nvim",
-      keys = { "gc", "gcc", "gbc" },
       config = function()
         require("Comment").setup {}
       end,
@@ -297,7 +296,17 @@ function M.setup()
       'glepnir/lspsaga.nvim',
       branch = 'main',
       config = function()
-          require('lspsaga').setup({})
+        require('lspsaga').setup {
+          definition = {
+            width = 0.8,
+            height = 0.8,
+          },
+          finder = {
+            max_height = 0.8,
+            left_width = 0.3,
+            right_width = 0.5,
+          },
+        }
       end,
     }
 

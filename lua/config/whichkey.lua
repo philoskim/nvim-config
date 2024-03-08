@@ -76,7 +76,7 @@ function M.setup()
       border = "single", -- none, single, double, shadow
       position = "bottom", -- bottom, top
     },
-    show_help = false,
+    show_help = true,
     plugins = {
       presets = {
         g = false,
@@ -164,9 +164,8 @@ function M.setup()
       a = { '<cmd>lua require("lsp_signature").toggle_float_win()<CR>', 'Api signature' },
       c = { '<cmd>Lspsaga incoming_calls<CR>', 'Call hierachy' },
       d = { '<cmd>Lspsaga peek_definition<CR>', 'Peek definition' },
-      D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Diagnostics' },
       f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
-      g = { '<cmd>Lspsaga goto_definition<CR>', 'Goto definition' },
+      g = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'diaGnostics' },
       h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover doc' },
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
       o = { '<cmd>Lspsaga outline<CR>', 'Outline' },
@@ -260,7 +259,10 @@ function M.setup()
 
   --- normal and visual mode
   vim.cmd [[
-    noremap 9 $
+    noremap g0 ^
+    noremap g9 $
+    nnoremap gd <cmd>Lspsaga goto_definition<cr>zz
+    nnoremap go <C-o>zz
    ]]
 
   --- visual mode
