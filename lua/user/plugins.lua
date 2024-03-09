@@ -62,7 +62,7 @@ function M.setup()
          {'nvim-lua/plenary.nvim'}
        },
        config = function()
-         require('config.telescope').setup()
+         require('plugins.telescope').setup()
        end,
     }
 
@@ -79,7 +79,7 @@ function M.setup()
       "TimUntersberger/neogit",
       cmd = "Neogit",
       config = function()
-        require("config.neogit").setup()
+        require("plugins.neogit").setup()
       end,
     }
 
@@ -100,7 +100,7 @@ function M.setup()
       "folke/which-key.nvim",
       event = "VimEnter",
       config = function()
-        require("config.whichkey").setup()
+        require("plugins.whichkey").setup()
       end,
     }
 
@@ -109,7 +109,7 @@ function M.setup()
       "lukas-reineke/indent-blankline.nvim",
       event = "BufReadPre",
       config = function()
-        require("config.indentblankline").setup()
+        require("plugins.indentblankline").setup()
       end,
     }
 
@@ -153,7 +153,7 @@ function M.setup()
       "nvim-lualine/lualine.nvim",
       after = "nvim-treesitter",
       config = function()
-        require("config.lualine").setup()
+        require("plugins.lualine").setup()
       end,
       requires = { "nvim-web-devicons" },
     }
@@ -165,7 +165,7 @@ function M.setup()
       event = "BufRead",
       run = ":TSUpdate",
       config = function()
-        require("config.treesitter").setup()
+        require("plugins.treesitter").setup()
       end,
       requires = {
         { "nvim-treesitter/nvim-treesitter-textobjects" },
@@ -192,7 +192,7 @@ function M.setup()
       },
       cmd = { "NvimTreeToggle", "NvimTreeClose" },
       config = function()
-        require("config.nvimtree").setup()
+        require("plugins.nvimtree").setup()
       end,
     }
 
@@ -201,7 +201,7 @@ function M.setup()
      "akinsho/toggleterm.nvim",
      tag = 'v2.*',
      config = function()
-       require("config.toggleterm").setup()
+       require("plugins.toggleterm").setup()
       end,
    }
 
@@ -211,7 +211,7 @@ function M.setup()
       event = "BufReadPre",
       wants = "nvim-web-devicons",
       config = function()
-        require("config.bufferline").setup()
+        require("plugins.bufferline").setup()
       end,
     }
 
@@ -237,7 +237,7 @@ function M.setup()
       opt = true,
       run = ":COQdeps",
       config = function()
-        require("config.coq").setup()
+        require("plugins.coq").setup()
       end,
       requires = {
         { "ms-jpq/coq.artifacts", branch = "artifacts" },
@@ -253,7 +253,7 @@ function M.setup()
       event = "InsertEnter",
       opt = true,
       config = function()
-        require("config.cmp").setup()
+        require("plugins.cmp").setup()
       end,
       wants = { "LuaSnip" },
       requires = {
@@ -271,7 +271,7 @@ function M.setup()
           "L3MON4D3/LuaSnip",
           wants = "friendly-snippets",
           config = function()
-            require("config.luasnip").setup()
+            require("plugins.luasnip").setup()
           end,
         },
         "rafamadriz/friendly-snippets",
@@ -282,13 +282,13 @@ function M.setup()
     use {
       'williamboman/mason.nvim',
       requires = {
-        'williamboman/mason-lspconfig.nvim',
+        'williamboman/mason-lspplugins.nvim',
         'neovim/nvim-lspconfig',
       },
       config = function()
         require("mason").setup()
         require("mason-lspconfig").setup()
-        require'config.lsp'.setup()
+        require'plugins.lsp'.setup()
       end,
     }
 
@@ -311,7 +311,7 @@ function M.setup()
     }
 
     use {
-      'williamboman/mason-lspconfig.nvim',
+      'williamboman/mason-lspplugins.nvim',
       config = function()
         require("mason-lspconfig").setup()
       end,
@@ -320,7 +320,7 @@ function M.setup()
     use {
       "jose-elias-alvarez/null-ls.nvim",
       config = function()
-          require("config.lsp.null-ls").setup()
+          require("plugins.lsp.null-ls").setup()
       end,
       requires = { "nvim-lua/plenary.nvim" },
     }

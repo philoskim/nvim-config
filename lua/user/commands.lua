@@ -1,3 +1,5 @@
+local opt = vim.opt
+
 function init_clojure()
   opt.iskeyword:remove("/")
 
