@@ -1,6 +1,6 @@
-local M = {}
+local spec = {'nvim-treesitter/nvim-treesitter'}
 
-function M.setup()
+spec.init = function()
   require("nvim-treesitter.configs").setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
     ensure_installed = {'python', 'javascript', 'clojure'},
@@ -90,4 +90,4 @@ function M.setup()
   }
 end
 
-return M
+return spec

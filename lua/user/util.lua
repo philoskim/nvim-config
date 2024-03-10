@@ -44,4 +44,14 @@ function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+function M.get_char_under_cursor()
+  local _row, col = vim.api.nvim_win_get_cursor()
+  local char = vim.api.nvim_get_current_line[col]
+  dump(char)
+  return char
+end
+
+-- getline(".")[col(".") - 1]
 return M
+
+

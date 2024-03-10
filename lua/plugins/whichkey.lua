@@ -1,6 +1,6 @@
-local api = vim.api
+local spec = {"folke/which-key.nvim"}
 
-local M = {}
+local api = vim.api
 
 local function getVisualSelection()
 	vim.cmd('noau normal! "vy"')
@@ -68,7 +68,7 @@ function printEval()
   ]]
 end
 
-function M.setup()
+spec.init = function()
   local whichkey = require "which-key"
 
   local conf = {
@@ -170,7 +170,7 @@ function M.setup()
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
       o = { '<cmd>Lspsaga outline<CR>', 'Outline' },
       r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
-      s = { '<cmd>Lspsaga lsp_finder<CR>', 'Symbol' },
+      s = { '<cmd>Lspsaga finder<CR>', 'Symbol' },
       t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
     },
 
@@ -261,6 +261,7 @@ function M.setup()
   vim.cmd [[
     noremap g0 ^
     noremap g9 $
+    noremap g2 %
     nnoremap gd <cmd>Lspsaga goto_definition<cr>zz
     nnoremap go <C-o>zz
    ]]
@@ -282,4 +283,4 @@ function M.setup()
   --keymap('v', 'gq', range_format)
 end
 
-return M
+return spec

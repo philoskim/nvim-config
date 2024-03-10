@@ -1,6 +1,8 @@
-local M = {}
+local spec = {
+  "L3MON4D3/LuaSnip"
+}
 
-function M.setup()
+spec.init = function()
   local luasnip = require "luasnip"
 
   luasnip.config.set_config {
@@ -21,4 +23,4 @@ function M.setup()
   luasnip.filetype_extend("all", { "_" })
 end
 
-return M
+return spec

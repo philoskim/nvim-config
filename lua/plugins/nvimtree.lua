@@ -1,6 +1,6 @@
-local api = vim.api
+local spec = {"nvim-tree/nvim-tree.lua"}
 
-local M = {}
+local api = vim.api
 
 function nvimTreeToNormalMode()
   -- NvimTree에 focus가 놓일 때, 항상 Normal mode 상태로 유지한다
@@ -16,31 +16,28 @@ function nvimTreeToNormalMode()
   end
 end
 
-function M.setup()
-  require("nvim-tree").setup {
-    --disable_netrw = true,
-    --hijack_netrw = true,
-    --open_on_setup = true,
-    view = {
-      side = "left",
-      width = 30,
-    },
-    filters = {
-      custom = { ".git" },
-    },
-    actions = {
-      open_file = {
-        resize_window = true,
-        -- window_picker = {
-        --   enable = false,
-        -- }
-      }
-    }
-  }
-
+spec.init = function()
   vim.cmd [[
     autocmd WinEnter * lua nvimTreeToNormalMode()
   ]]
 end
 
-return M
+spec.opts = {
+  --disable_netrw = true,
+  --hijack_netrw = true,
+  --open_on_setup = true,
+  view = {
+    side = "left",
+    width = 30,
+  },
+  filters = {
+    custom = {".git"},
+  },
+  actions = {
+    open_file = {
+      resize_window = true,
+    }
+  }
+}
+
+return spec

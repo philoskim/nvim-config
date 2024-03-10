@@ -1,46 +1,41 @@
-local status_ok, toggleterm = pcall(require, "toggleterm")
-if not status_ok then
-	return
-end
+local spec = {'akinsho/toggleterm.nvim'}
 
-local M = {}
+spec.opts = {
+  size = 20,
+  open_mapping = [[<c-\>]],
+  hide_numbers = true,
+  shade_filetypes = {},
+  shade_terminals = true,
+  shading_factor = 2,
+  start_in_insert = true,
+  insert_mappings = true,
+  persist_size = true,
+  direction = "float",
+  close_on_exit = true,
+  shell = vim.o.shell,
+  float_opts = {
+    border = "curved",
+    winblend = 0,
+    width = function()
+      return math.floor(vim.o.columns * 0.9)
+    end,
+    height = function()
+      return math.floor(vim.o.lines * 0.9)
+    end,
+    highlights = {
+      border = "Normal",
+      background = "Normal",
+    },
+  },
+  winbar = {
+    enabled = true,
+    name_formatter = function(term) --  term: Terminal
+      return term.name
+    end
+  },
+}
 
-function M.setup()
-  toggleterm.setup {
-    size = 20,
-    open_mapping = [[<c-\>]],
-    hide_numbers = true,
-    shade_filetypes = {},
-    shade_terminals = true,
-    shading_factor = 2,
-    start_in_insert = true,
-    insert_mappings = true,
-    persist_size = true,
-    direction = "float",
-    close_on_exit = true,
-    shell = vim.o.shell,
-    float_opts = {
-      border = "curved",
-      winblend = 0,
-      width = function()
-        return math.floor(vim.o.columns * 0.9)
-      end,
-      height = function()
-        return math.floor(vim.o.lines * 0.9)
-      end,
-      highlights = {
-        border = "Normal",
-        background = "Normal",
-      },
-    },
-    winbar = {
-      enabled = true,
-      name_formatter = function(term) --  term: Terminal
-        return term.name
-      end
-    },
-  }
-end
+spec.init = function()
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
@@ -98,5 +93,6 @@ local lazygit = Terminal:new(lazygit_opts)
 function _lazygit_toggle()
 	lazygit:toggle()
 end
+end
 
-return M
+return spec

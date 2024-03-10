@@ -1,48 +1,51 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
+local spec = {
+  'nvim-telescope/telescope.nvim',
+  dependencies = {'nvim-lua/plenary.nvim'}
+}
 
-local actions = require "telescope.actions"
+spec.init = function()
+  -- To get fzf loaded and working with telescope, you need to call
+  -- load_extension, somewhere after setup function:
+  require('telescope').load_extension('fzf')
 
-M = {}
+  local actions = require "telescope.actions"
 
-local keymappings = {
-  i = {
-    ["<C-n>"] = actions.cycle_history_next,
-    ["<C-p>"] = actions.cycle_history_prev,
+  keymappings = {
+    i = {
+      ["<C-n>"] = actions.cycle_history_next,
+      ["<C-p>"] = actions.cycle_history_prev,
 
-    ["<C-j>"] = actions.move_selection_next,
-    ["<C-k>"] = actions.move_selection_previous,
+      ["<C-j>"] = actions.move_selection_next,
+      ["<C-k>"] = actions.move_selection_previous,
 
-    ["<C-c>"] = actions.close,
+      ["<C-c>"] = actions.close,
 
-    ["<Down>"] = actions.move_selection_next,
-    ["<Up>"] = actions.move_selection_previous,
+      ["<Down>"] = actions.move_selection_next,
+      ["<Up>"] = actions.move_selection_previous,
 
-    ["<CR>"] = actions.select_default,
-    ["<C-x>"] = actions.select_horizontal,
-    ["<C-v>"] = actions.select_vertical,
-    ["<C-t>"] = actions.select_tab,
+      ["<CR>"] = actions.select_default,
+      ["<C-x>"] = actions.select_horizontal,
+      ["<C-v>"] = actions.select_vertical,
+      ["<C-t>"] = actions.select_tab,
 
-    ["<C-u>"] = actions.preview_scrolling_up,
-    ["<C-d>"] = actions.preview_scrolling_down,
+      ["<C-u>"] = actions.preview_scrolling_up,
+      ["<C-d>"] = actions.preview_scrolling_down,
 
-    ["<PageUp>"] = actions.results_scrolling_up,
-    ["<PageDown>"] = actions.results_scrolling_down,
+      ["<PageUp>"] = actions.results_scrolling_up,
+      ["<PageDown>"] = actions.results_scrolling_down,
 
-    ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-    ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-    ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-    ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-    ["<C-l>"] = actions.complete_tag,
-    ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
-  },
+      ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+      ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+      ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+      ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+      ["<C-l>"] = actions.complete_tag,
+      ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+    },
 
-  n = {
-    ["<esc>"] = actions.close,
-    ["<CR>"] = actions.select_default,
-    ["<C-x>"] = actions.select_horizontal,
+    n = {
+      ["<esc>"] = actions.close,
+      ["<CR>"] = actions.select_default,
+      ["<C-x>"] = actions.select_horizontal,
       ["<C-v>"] = actions.select_vertical,
       ["<C-t>"] = actions.select_tab,
 
@@ -70,46 +73,41 @@ local keymappings = {
 
       ["?"] = actions.which_key,
     },
-}
-
-function M.setup()
-  telescope.setup {
-    defaults = {
-      layout_strategy = 'vertical',
-      layout_config = {
-        width = 0.9,
-      },
-      shorten_path = true,
-      only_sort_text = true,
-      scroll_strategy = "limit",  -- default: "cycle"
-
-      prompt_prefix = " ",
-      selection_caret = " ",
-      path_display = { "smart" },
-
-      mappings = keymappings,
-    },
-    pickers = {
-      live_grep = {
-        only_sort_text = true,
-      },
-      grep_string = {
-        only_sort_text = true,
-      },
-    },
-    extensions = {
-      fzf = {
-        fuzzy = false,                   -- false will only do exact matching
-        override_generic_sorter = true,  -- override the generic sorter
-        override_file_sorter = true,     -- override the file sorter
-        case_mode = "ignore_case",      -- or "smart_case" or "respect_case"
-      },
-    },
   }
-
-  -- To get fzf loaded and working with telescope, you need to call
-  -- load_extension, somewhere after setup function:
-  require('telescope').load_extension('fzf')
 end
 
-return M
+spec.opts = {
+  defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      width = 0.9,
+    },
+    shorten_path = true,
+    only_sort_text = true,
+    scroll_strategy = "limit",  -- default: "cycle"
+
+    prompt_prefix = " ",
+    selection_caret = " ",
+    path_display = { "smart" },
+
+    mappings = keymappings,
+  },
+  pickers = {
+    live_grep = {
+      only_sort_text = true,
+    },
+    grep_string = {
+      only_sort_text = true,
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = false,                   -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "ignore_case",      -- or "smart_case" or "respect_case"
+    },
+  },
+}
+
+return spec

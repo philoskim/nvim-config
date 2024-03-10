@@ -1,9 +1,9 @@
-local M = {}
-
-function M.setup()
-  require("ibl").setup {
+local spec = {
+  "lukas-reineke/indent-blankline.nvim",
+  main = "ibl",
+  opts = {
     indent = { highlight = highlight, char = "┊" },
   }
-end
+}
 
-return M
+return spec
