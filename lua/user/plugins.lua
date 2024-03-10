@@ -304,7 +304,7 @@ function M.setup()
           finder = {
             max_height = 0.8,
             left_width = 0.3,
-            right_width = 0.5,
+            right_width = 0.9,
           },
         }
       end,

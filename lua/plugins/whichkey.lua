@@ -170,7 +170,7 @@ function M.setup()
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
       o = { '<cmd>Lspsaga outline<CR>', 'Outline' },
       r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
-      s = { '<cmd>Lspsaga lsp_finder<CR>', 'Symbol' },
+      s = { '<cmd>Lspsaga finder<CR>', 'Symbol' },
       t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
     },
 
