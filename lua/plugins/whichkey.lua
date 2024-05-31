@@ -174,16 +174,6 @@ spec.init = function()
       t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
     },
 
-    p = {
-      name = "Packer",
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      p = { "<cmd>PackerProfile<cr>", "Profile" },
-      s = { "<cmd>PackerSync<cr>", "Sync" },
-      S = { "<cmd>PackerStatus<cr>", "Status" },
-      u = { "<cmd>PackerUpdate<cr>", "Update" },
-    },
-
     t = {
       name = "Toggle Window",
       t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
