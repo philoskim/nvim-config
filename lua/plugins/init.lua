@@ -11,6 +11,16 @@ local Plugins = {
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
   {"numToStr/Comment.nvim"},
 
+  {"f-person/git-blame.nvim",
+   init = function()
+     require('gitblame').setup {
+       enabled = false,
+       highlight_group = "Question",
+       date_format = '%y/%m/%d'
+     }
+   end,
+  },
+
   -- colorscheme
   {'martinsione/darkplus.nvim',
    init = function() vim.cmd "colorscheme darkplus" end},
