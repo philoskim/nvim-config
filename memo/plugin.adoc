@@ -1,0 +1,20 @@
+= Plugin memo
+
+== Lazy package manager
+
+* https://github.com/folke/lazy.nvim
+
+=== Uninstall
+
+To uninstall lazy.nvim, you need to remove the following files and directories:
+
+* data (plugins repository): ~/.local/share/nvim/lazy
+* state (plugins doc): ~/.local/state/nvim/lazy
+* lockfile: ~/.config/nvim/lazy-lock.json
+
+
+== Plugin example
+
+* https://m4xshen.dev/posts/develop-a-neovim-plugin-in-lua/
+
+

@@ -38,10 +38,9 @@ lazy.opts = {
   },
 }
 
--- import plugins configs from nvim/lua/plugins/ folder
 lazy.setup {
     spec = {
-      {import = 'plugins'},
-      {import = 'plugins.lsp'},
+      {import = 'config'},
+      {import = 'config.lsp'},
     }
 }

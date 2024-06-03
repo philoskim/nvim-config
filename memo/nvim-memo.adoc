@@ -9,8 +9,9 @@
 
 ** The "Vim API" inherited from Vim: Ex-commands and builtin-functions as
 well as user-functions in Vimscript. These are accessed through `vim.cmd()`
-and `vim.fn` respectively, which are discussed under lua-guide-vimscript
-below.
+and `vim.fn` respectively.
+*** `vim.cmd`: Ex-commands started in command-line by ':'
+*** `vim.fn`: Vimscript functions
 
 ** The "Nvim API" written in C for use in remote plugins and GUIs; see api.
 These functions are accessed through `vim.api`.
@@ -53,6 +54,19 @@ EOF
 루아 모듈들은 네오빔의 `runtimepath` (대부분의 *nix 시스템에서는 `~/.config/nvim/lua`,
 윈도우에서는 `~/AppData/Local/nvim/lua`) 안의 `lua/` 폴더에 위치합니다. 이 폴더에 있는
 루아 파일들은 모듈로 `require()` 할 수 있습니다
+
+
+== Variables
+
+[listing]
+----
+vim.g: global variables (g:)
+vim.b: variables for the current buffer (b:)
+vim.w: variables for the current window (w:)
+vim.t: variables for the current tabpage (t:)
+vim.v: predefined Vim variables (v:)
+vim.env: environment variables defined in the editor session
+----
 
 
 == Modules

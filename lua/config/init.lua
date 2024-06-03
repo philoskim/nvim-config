@@ -7,6 +7,13 @@ local Plugins = {
   {'stevearc/dressing.nvim', opts = {}},
   {'nvim-tree/nvim-web-devicons', lazy = true},
 
+  {
+   "m4xshen/example.nvim",
+   init = function()
+     require("example").setup()
+   end
+  },
+
   {'mhinz/vim-startify'},
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
   {"numToStr/Comment.nvim"},
