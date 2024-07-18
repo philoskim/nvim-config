@@ -1,5 +1,31 @@
-local spec = {"folke/which-key.nvim"}
+--- global key bindings
+local keymap = vim.keymap.set
 
+-- normal and visual mode
+vim.cmd [[
+  noremap g0 ^
+  noremap g9 $
+  noremap g2 %
+  nnoremap gd <cmd>Lspsaga goto_definition<cr>zz
+  nnoremap go <C-o>zz
+]]
+
+-- visual mode
+local visual_opts2 = { noremap = true, silent = true }
+local tb =  require('telescope.builtin')
+
+keymap('v', '<leader>fb', function()
+  local text = getVisualSelection()
+  tb.current_buffer_fuzzy_find({ default_text = text })
+end, visual_opts2)
+
+keymap('v', '<leader>fg', function()
+local text = getVisualSelection()
+tb.grep_string({ search = text })
+end, visual_opts2)
+
+
+--- utils
 local api = vim.api
 
 local function getVisualSelection()
@@ -68,209 +94,116 @@ function printEval()
   ]]
 end
 
-spec.init = function()
-  local whichkey = require "which-key"
+--   range_format = function()
+--     local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+--     local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+--     vim.lsp.buf.format({
+--       range = {
+--         ["start"] = { start_row, 0 },
+--         ["end"] = { end_row, 0 },
+--       },
+--       async = true,
+--     })
+--   end
 
-  local conf = {
-    window = {
-      border = "single", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-    },
-    show_help = true,
-    plugins = {
-      presets = {
-        g = false,
-      },
-    },
-  }
 
-  --- normal mode
-  local normal_opts = {
-    mode = "n", -- Normal mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  }
-
-  local normal_mappings = {
-    ["s"] = { "<cmd>update!<CR>", "Save" },
-    ["S"] = { "<cmd>wa<CR>", "Save all" },
-    ["q"] = { "<cmd>qa<CR>", "Quit" },
-    ["Q"] = { "<cmd>qa!<CR>", "Quit all" },
-
-    b = {
-      name = "Buffer",
-      b = { "<cmd>Telescope buffers sort_mru=true<cr>", "Buffers" },
-      c = { "<Cmd>bd!<Cr>", "Close current buffer" },
-      D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
+--- which-key mappings
+local key_mappings = {
+    { "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
     },
 
-    d = {
-      name = "Debug",
-      c = { name = "clog(n)",
-            c = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClog()<cr><esc>w",
-                  "Insert clog" },
-            n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClogn()<cr><esc>w",
-                  "Insert clogn" },
-          },
-      d = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>w",
-            "Insert dbg/clog" },
-      n = { "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>w",
-            "Insert dbgn/clogn" },
-      r = { "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>",
-            "Remove dbg(n)/clog(n)" },
-    },
+    { "<leader>=", group = "Format", nowait = false, remap = false },
+    { "<leader>==", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format buffer",
+        nowait = false, remap = false },
 
-    e = {
-      name = "Eval",
-      e = { "<plug>(iced_eval_outer_top_list)", "Outermost" },
-      b = { "<plug>(iced_require)", "Buffer" },
-      m = { "mA", "Mark" },
-      r = { "<plug>(iced_stdout_buffer_clear)<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>",
-            "Clear & Re-eval" },
-      R = { "<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", "Re-eval" },
-      i = { "<plug>(iced_eval)<plug>(sexp_inner_element)", "Inner" },
-      o = { "<plug>(iced_eval)<plug>(sexp_outer_element)", "Outer" },
-      p = { '"x<localleader>ee<cmd>lua printEval()<cr>',
-            "Print eval" },
-      -- p = { "<plug>(iced_eval_outer_top_list)<cmd>lua printEval()<cr>",
-      --       "Print eval" },
-      q = { "<plug>(iced_interrupt)", "Interrupt" },
-      t = { "<plug>(iced_stdout_buffer_toggle)", "Toggle stdout" },
-      c = { "<plug>(iced_stdout_buffer_clear)", "Clear stdout" },
-    },
+    { "<leader>Q", "<cmd>qa!<CR>", desc = "Quit all", nowait = false, remap = false },
+    { "<leader>S", "<cmd>wa<CR>", desc = "Save all", nowait = false, remap = false },
 
-    f = {
-      name = "Find",
-      f = { "<cmd>Telescope find_files<cr>", "Files" },
-      b = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find{default_text=vim.fn.expand('<cword>')}<cr>",
-            "Curr buf cword" },
-      B = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Curr buf grep" },
-      g = { "<cmd>Telescope grep_string<cr>", "Grep cword" },
-      G = { "<cmd>lua require('telescope.builtin').grep_string{search=''}<cr>", "Grep" },
-      r = { "<cmd>Telescope resume<cr>", "Resume" },
-    },
+    { "<leader>b", group = "Buffer", nowait = false, remap = false },
+    { "<leader>bD", "<Cmd>%bd|e#|bd#<Cr>", desc = "Delete all buffers", nowait = false, remap = false },
+    { "<leader>bb", "<cmd>Telescope buffers sort_mru=true<cr>", desc = "Buffers", nowait = false, remap = false },
+    { "<leader>bc", "<Cmd>bd!<Cr>", desc = "Close current buffer", nowait = false, remap = false },
 
-    g = {
-      name = "Git",
-      b = { "<cmd>GitBlameToggle<cr>", "Blame" },
-      t = { "<cmd>lua _lazygit_toggle()<cr>", "lazygit Terminal" },
-    },
+    { "<leader>d", group = "Debug", nowait = false, remap = false },
+    { "<leader>dc", group = "clog(n)", nowait = false, remap = false },
+    { "<leader>dcc", "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClog()<cr><esc>w", desc = "Insert clog", nowait = false, remap = false },
+    { "<leader>dcn", "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClogn()<cr><esc>w", desc = "Insert clogn", nowait = false, remap = false },
+    { "<leader>dd", "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>w", desc = "Insert dbg/clog", nowait = false, remap = false },
+    { "<leader>dn", "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>w", desc = "Insert dbgn/clogn", nowait = false, remap = false },
+    { "<leader>dr", "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>", desc = "Remove dbg(n)/clog(n)", nowait = false, remap = false },
 
-    l = {
-      name = "Lsp",
-      a = { '<cmd>lua require("lsp_signature").toggle_float_win()<CR>', 'Api signature' },
-      c = { '<cmd>Lspsaga incoming_calls<CR>', 'Call hierachy' },
-      d = { '<cmd>Lspsaga peek_definition<CR>', 'Peek definition' },
-      f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
-      g = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'diaGnostics' },
-      h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover doc' },
-      i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
-      o = { '<cmd>Lspsaga outline<CR>', 'Outline' },
-      r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
-      s = { '<cmd>Lspsaga finder<CR>', 'Symbol' },
-      t = { '<cmd>Lspsaga open_floaterm<CR>', 'Terminal' },
-    },
+    { "<leader>e", group = "Eval", nowait = false, remap = false },
+    { "<leader>eR", "<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", desc = "Re-eval", nowait = false, remap = false },
+    { "<leader>eb", "<plug>(iced_require)", desc = "Buffer", nowait = false, remap = false },
+    { "<leader>ec", "<plug>(iced_stdout_buffer_clear)", desc = "Clear stdout", nowait = false, remap = false },
+    { "<leader>ee", "<plug>(iced_eval_outer_top_list)", desc = "Outermost", nowait = false, remap = false },
+    { "<leader>ei", "<plug>(iced_eval)<plug>(sexp_inner_element)", desc = "Inner", nowait = false, remap = false },
+    { "<leader>em", "mA", desc = "Mark", nowait = false, remap = false },
+    { "<leader>eo", "<plug>(iced_eval)<plug>(sexp_outer_element)", desc = "Outer", nowait = false, remap = false },
+    { "<leader>ep", '"x<localleader>ee<cmd>lua printEval()<cr>', desc = "Print eval", nowait = false, remap = false },
+    { "<leader>eq", "<plug>(iced_interrupt)", desc = "Interrupt", nowait = false, remap = false },
+    { "<leader>er", "<plug>(iced_stdout_buffer_clear)<cmd>call iced#repl#execute('eval_at_mark', 'A')<cr>", desc = "Clear & Re-eval", nowait = false, remap = false },
+    { "<leader>et", "<plug>(iced_stdout_buffer_toggle)", desc = "Toggle stdout", nowait = false, remap = false },
 
-    t = {
-      name = "Toggle Window",
-      t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
-      c = { "<cmd>lua _clojure_toggle()<cr>", "Clojure" },
-      b = { "<cmd>lua _bash_toggle()<cr>", "Bash" },
-      n = { "<cmd>lua _node_toggle()<cr>", "Node" },
-      p = { "<cmd>lua _python_toggle()<cr>", "Python" },
-    },
+    { "<leader>f", group = "Find", nowait = false, remap = false },
+    { "<leader>fB", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Curr buf grep", nowait = false, remap = false },
+    { "<leader>fG", "<cmd>lua require('telescope.builtin').grep_string{search=''}<cr>", desc = "Grep", nowait = false, remap = false },
+    { "<leader>fb", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find{default_text=vim.fn.expand('<cword>')}<cr>", desc = "Curr buf cword", nowait = false, remap = false },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files", nowait = false, remap = false },
+    { "<leader>fg", "<cmd>Telescope grep_string<cr>", desc = "Grep cword", nowait = false, remap = false },
+    { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume", nowait = false, remap = false },
 
-    w = {
-      name = "Window",
-      h = { "<C-w>h", "to Left window" },
-      j = { "<C-w>j", "to Lower window" },
-      k = { "<C-w>k", "to Upper window" },
-      l = { "<C-w>l", "to Right window" },
-      H = { "<C-w>H", "window to Left" },
-      J = { "<C-w>J", "window to Lower" },
-      K = { "<C-w>K", "window to Upper" },
-      L = { "<C-w>L", "window to Right" },
-      c = { "<C-w>c", "Close window" },
-      s = { "<cmd>split<cr>", "Split window" },
-      v = { "<cmd>vsplit<cr>", "Vsplit window" },
-    },
+    { "<leader>g", group = "Git", nowait = false, remap = false },
+    { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame", nowait = false, remap = false },
+    { "<leader>gt", "<cmd>lua _lazygit_toggle()<cr>", desc = "lazygit Terminal", nowait = false, remap = false },
 
-   ['='] = {
-     name ="Format",
-     ['='] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format buffer"},
-   },
-  }
+    { "<leader>l", group = "Lsp", nowait = false, remap = false },
+    { "<leader>la", '<cmd>lua require("lsp_signature").toggle_float_win()<CR>', desc = "Api signature", nowait = false, remap = false },
+    { "<leader>lc", "<cmd>Lspsaga incoming_calls<CR>", desc = "Call hierachy", nowait = false, remap = false },
+    { "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition", nowait = false, remap = false },
+    { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
+    { "<leader>lg", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "diaGnostics", nowait = false, remap = false },
+    { "<leader>lh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover doc", nowait = false, remap = false },
+    { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Implementation", nowait = false, remap = false },
+    { "<leader>lo", "<cmd>Lspsaga outline<CR>", desc = "Outline", nowait = false, remap = false },
+    { "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Rename", nowait = false, remap = false },
+    { "<leader>ls", "<cmd>Lspsaga finder<CR>", desc = "Symbol", nowait = false, remap = false },
+    { "<leader>lt", "<cmd>Lspsaga open_floaterm<CR>", desc = "Terminal", nowait = false, remap = false },
 
-  local visual_opts = {
-    mode = "v", -- Visual mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  }
+    { "<leader>q", "<cmd>qa<CR>", desc = "Quit", nowait = false, remap = false },
+    { "<leader>s", "<cmd>update!<CR>", desc = "Save", nowait = false, remap = false },
 
-  range_format = function()
-    local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
-    local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
-    vim.lsp.buf.format({
-      range = {
-        ["start"] = { start_row, 0 },
-        ["end"] = { end_row, 0 },
-      },
-      async = true,
-    })
-  end
+    { "<leader>t", group = "Toggle Window", nowait = false, remap = false },
+    { "<leader>tb", "<cmd>lua _bash_toggle()<cr>", desc = "Bash", nowait = false, remap = false },
+    { "<leader>tc", "<cmd>lua _clojure_toggle()<cr>", desc = "Clojure", nowait = false, remap = false },
+    { "<leader>tl", "<cmd>lua _clojure2_toggle()<cr>", desc = "Clojure", nowait = false, remap = false },
+    { "<leader>tn", "<cmd>lua _node_toggle()<cr>", desc = "Node", nowait = false, remap = false },
+    { "<leader>tp", "<cmd>lua _python_toggle()<cr>", desc = "Python", nowait = false, remap = false },
+    { "<leader>tt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree", nowait = false, remap = false },
 
-  local visual_mappings = {
-    l = {
-      name = 'Lsp',
-      -- f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'Format' },
-      f = { '<cmd>lua range_format()<CR>', 'Format' },
-    },
-  }
+    { "<leader>w", group = "Window", nowait = false, remap = false },
+    { "<leader>wH", "<C-w>H", desc = "window to Left", nowait = false, remap = false },
+    { "<leader>wJ", "<C-w>J", desc = "window to Lower", nowait = false, remap = false },
+    { "<leader>wK", "<C-w>K", desc = "window to Upper", nowait = false, remap = false },
+    { "<leader>wL", "<C-w>L", desc = "window to Right", nowait = false, remap = false },
+    { "<leader>wc", "<C-w>c", desc = "Close window", nowait = false, remap = false },
+    { "<leader>wh", "<C-w>h", desc = "to Left window", nowait = false, remap = false },
+    { "<leader>wj", "<C-w>j", desc = "to Lower window", nowait = false, remap = false },
+    { "<leader>wk", "<C-w>k", desc = "to Upper window", nowait = false, remap = false },
+    { "<leader>wl", "<C-w>l", desc = "to Right window", nowait = false, remap = false },
+    { "<leader>ws", "<cmd>split<cr>", desc = "Split window", nowait = false, remap = false },
+    { "<leader>wv", "<cmd>vsplit<cr>", desc = "Vsplit window", nowait = false, remap = false },
+}
 
-  whichkey.setup(conf)
-  whichkey.register(normal_mappings, normal_opts)
-  whichkey.register(visual_mappings, visual_opts)
-
-
-  --- etc key bindings
-  local keymap = vim.keymap.set
-
-  --- normal mode
-  -- keymap('n', '==', function()
-  --   vim.inspect('called')
-  --   vim.lsp.buf.format()
-  -- end, {noremap=true})
-
-  --- normal and visual mode
-  vim.cmd [[
-    noremap g0 ^
-    noremap g9 $
-    noremap g2 %
-    nnoremap gd <cmd>Lspsaga goto_definition<cr>zz
-    nnoremap go <C-o>zz
-   ]]
-
-  --- visual mode
-  local visual_opts2 = { noremap = true, silent = true }
-  local tb =  require('telescope.builtin')
-
-  keymap('v', '<leader>fb', function()
-	  local text = getVisualSelection()
-	  tb.current_buffer_fuzzy_find({ default_text = text })
-  end, visual_opts2)
-
-  keymap('v', '<leader>fg', function()
-    local text = getVisualSelection()
-    tb.grep_string({ search = text })
-  end, visual_opts2)
-
-  --keymap('v', 'gq', range_format)
-end
+local spec = {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  opts = {},
+  keys = key_mappings,
+}
 
 return spec

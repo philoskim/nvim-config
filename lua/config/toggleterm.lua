@@ -77,6 +77,16 @@ function _clojure_toggle()
 	clojure:toggle()
 end
 
+local clojure2 = Terminal:new({
+  cmd = 'iced repl',
+  hidden = true,
+  direction = 'float',
+})
+
+function _clojure2_toggle()
+	clojure2:toggle()
+end
+
 -- 참고: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 local lazygit_opts = {
   cmd = 'lazygit',
