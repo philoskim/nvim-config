@@ -6,7 +6,13 @@ local Plugins = {
   {'tpope/vim-repeat'},
   {'stevearc/dressing.nvim', opts = {}},
   {'nvim-tree/nvim-web-devicons', lazy = true},
-
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+  },
   {
    "m4xshen/example.nvim",
    init = function()
