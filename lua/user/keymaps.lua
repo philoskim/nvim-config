@@ -38,3 +38,5 @@ keymap("n", "<M-Right>", "<C-W>l", default_opts)
 keymap("n", "<M-Up>", "<C-W>k", default_opts)
 keymap("n", "<M-Down>", "<C-W>j", default_opts)
 
+-- keymap("t", "<ScrollWheelUp>", "<Nop>", default_opts)
+-- keymap("t", "<ScrollWheelDown>", "<Nop>", default_opts)

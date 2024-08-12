@@ -181,6 +181,7 @@ local key_mappings = {
     { "<leader>tb", "<cmd>lua _bash_toggle()<cr>", desc = "Bash", nowait = false, remap = false },
     { "<leader>tc", "<cmd>lua _clojure_toggle()<cr>", desc = "Clojure", nowait = false, remap = false },
     { "<leader>tl", "<cmd>lua _clojure2_toggle()<cr>", desc = "Clojure", nowait = false, remap = false },
+    { "<leader>th", "<cmd>lua _haskell_toggle()<cr>", desc = "Haskell", nowait = false, remap = false },
     { "<leader>tn", "<cmd>lua _node_toggle()<cr>", desc = "Node", nowait = false, remap = false },
     { "<leader>tp", "<cmd>lua _python_toggle()<cr>", desc = "Python", nowait = false, remap = false },
     { "<leader>tt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree", nowait = false, remap = false },

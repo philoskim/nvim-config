@@ -1,3 +1,5 @@
+vim.cmd("language en_US")
+
 require("user.util")
 require("user.commands")
 require("user.settings")

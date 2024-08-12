@@ -34,6 +34,22 @@ local Plugins = {
    end,
   },
 
+  -- copilot
+   {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+          require("copilot_cmp").setup()
+      end,
+  },
+  {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+          require("copilot").setup({})
+      end,
+  },
+
   -- colorscheme
   {'martinsione/darkplus.nvim',
    init = function() vim.cmd "colorscheme darkplus" end},

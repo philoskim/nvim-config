@@ -36,6 +36,7 @@ spec.init = function()
     formatting = {
       format = function(entry, vim_item)
         vim_item.menu = ({
+          --copilot = "[Copilot]",
           luasnip = "[Snip]",
           nvim_lsp = "[Lsp]",
           buffer = "[Buffer]",
@@ -92,6 +93,7 @@ spec.init = function()
       }),
     },
     sources = {
+      { name = "copilot", group_index = 2 },
       { name = "luasnip" },
       { name = 'nvim_lsp' },
       { name = "buffer" },
