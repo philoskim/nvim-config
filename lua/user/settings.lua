@@ -60,10 +60,17 @@ opt.wildignore:append "**/.git/*"
 
 -- Treesitter based folding
 vim.cmd [[
+  lang en_US.UTF-8
+  " set encoding=utf-8
+  " set fileencoding=utf-8
+
   set foldlevel=20
   set foldmethod=expr
   set foldexpr=nvim_treesitter#foldexpr()
   set rtp+=/opt/homebrew/bin/fzf
+
+  autocmd TermOpen * startinsert
+  autocmd BufWinEnter,WinEnter term://* startinsert
 ]]
 
 

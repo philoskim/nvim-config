@@ -19,7 +19,7 @@ keymap("v", "<", "<gv", default_opts)
 keymap("v", ">", ">gv", default_opts)
 
 -- Paste over currently selected text without yanking it
-keymap("v", "p", '"_dP', default_opts)
+-- keymap("v", "p", '"_dP', default_opts)
 
 -- Switch buffer
 keymap("n", "<S-h>", ":bprevious<CR>", default_opts)

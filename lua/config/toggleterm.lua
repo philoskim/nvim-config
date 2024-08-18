@@ -89,6 +89,16 @@ spec.config = function()
         clojure2:toggle()
     end
 
+    local ruby = Terminal:new({
+      cmd = 'irb',
+      hidden = true,
+      direction = 'horizontal',
+    })
+
+    function _ruby_toggle()
+        ruby:toggle()
+    end
+
     local haskell = Terminal:new({
       cmd = 'stack ghci',
       hidden = true,

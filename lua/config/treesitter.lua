@@ -33,7 +33,7 @@ spec.init = function()
     -- nvim-treesitter-textobjects
     textobjects = {
       select = {
-        enable = true,
+        enable = false,
 
         -- Automatically jump forward to textobj, similar to targets.vim
         lookahead = true,
