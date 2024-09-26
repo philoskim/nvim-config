@@ -1,15 +1,16 @@
 -- vim-plug
 vim.cmd([=[
   call plug#begin()
-    Plug 'junegunn/fzf'
     Plug 'junegunn/vim-easy-align'
     Plug 'monkoose/matchparen.nvim'
 
-    Plug 'guns/vim-sexp', {'for': 'clojure'}
-    Plug 'philoskim/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
 
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    " Plug 'junegunn/fzf.vim'
+    Plug 'guns/vim-sexp', {'for': 'clojure'}
+    Plug 'philoskim/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
     Plug 'liquidz/vim-iced-multi-session', {'for': 'clojure'}
 
