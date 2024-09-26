@@ -30,10 +30,17 @@ vim.cmd [[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 
+  "augroup clojure
+  "  autocmd FileType clojure lua init_clojure()
+  "  autocmd BufWritePost *.clj IcedRequire
+  "  autocmd BufWritePost *.cljc IcedRequire
+  "  " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
+  "augroup END
+
   augroup clojure
     autocmd FileType clojure lua init_clojure()
-    autocmd BufWritePost *.clj IcedRequire
-    autocmd BufWritePost *.cljc IcedRequire
+    autocmd BufWritePost *.clj ConjureEvalFile
+    autocmd BufWritePost *.cljc ConjureEvalFIle
     " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
   augroup END
 

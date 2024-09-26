@@ -70,17 +70,18 @@ spec.config = function()
 
 
     local clojure = Terminal:new({
-      cmd = 'iced repl with-profile +local',
+      cmd = 'lein with-profile +local repl',
       hidden = true,
       direction = 'float',
     })
 
+
     function _clojure_toggle()
-        clojure:toggle()
+      clojure:toggle()
     end
 
     local clojure2 = Terminal:new({
-      cmd = 'iced repl',
+      cmd = 'lein repl',
       hidden = true,
       direction = 'float',
     })
