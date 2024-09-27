@@ -76,11 +76,11 @@ spec.init = function()
       flags = lsp_flags,
   })
 
-  -- require('lspconfig')['tsserver'].setup{
-  --     on_attach = on_attach,
-  --     capabilities = capabilities,
-  --     flags = lsp_flags,
-  -- }
+  require('lspconfig')['ts_ls'].setup{
+      on_attach = on_attach,
+      capabilities = capabilities,
+      flags = lsp_flags,
+  }
 
   require('lspconfig')['clojure_lsp'].setup{
       on_attach = on_attach,
