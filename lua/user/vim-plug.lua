@@ -2,10 +2,10 @@
 vim.cmd([=[
   call plug#begin()
     Plug 'junegunn/vim-easy-align'
-    "Plug 'monkoose/matchparen.nvim'
+    Plug 'monkoose/matchparen.nvim'
 
-    "Plug 'guns/vim-sexp', {'for': 'clojure'}
-    "Plug 'philoskim/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+    Plug 'guns/vim-sexp', {'for': 'clojure'}
+    Plug 'philoskim/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
 

@@ -70,18 +70,17 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 spec.init = function()
-  print("aaaaa")
   require('lspconfig')['pyright'].setup({
       on_attach = on_attach,
       capabilities = capabilities,
       flags = lsp_flags,
   })
 
-  require('lspconfig')['tsserver'].setup{
-      on_attach = on_attach,
-      capabilities = capabilities,
-      flags = lsp_flags,
-  }
+  -- require('lspconfig')['tsserver'].setup{
+  --     on_attach = on_attach,
+  --     capabilities = capabilities,
+  --     flags = lsp_flags,
+  -- }
 
   require('lspconfig')['clojure_lsp'].setup{
       on_attach = on_attach,
