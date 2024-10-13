@@ -170,6 +170,11 @@ local key_mappings = {
     { "<leader>ls", "<cmd>Lspsaga finder<CR>", desc = "Symbol", nowait = false, remap = false },
     { "<leader>lt", "<cmd>Lspsaga open_floaterm<CR>", desc = "Terminal", nowait = false, remap = false },
 
+    { "<leader>m", group = "Macro", nowait = false, remap = false },
+    { "<leader>ma", "<localleader>cm", desc = "Macroexpand All", nowait = false, remap = true },
+    { "<leader>m0", "<localleader>c0", desc = "Macroexpand", nowait = false, remap = true },
+    { "<leader>m1", "<localleader>c1", desc = "Macroexpand-1", nowait = false, remap = true },
+
     { "<leader>q", "<cmd>qa<CR>", desc = "Quit", nowait = false, remap = false },
     { "<leader>s", "<cmd>update!<CR>", desc = "Save", nowait = false, remap = false },
 
