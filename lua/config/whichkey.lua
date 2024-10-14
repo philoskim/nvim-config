@@ -4,8 +4,8 @@ local keymap = vim.keymap.set
 -- normal and visual mode
 vim.cmd [[
   noremap g0 ^
-  noremap g9 $
   noremap g2 %
+  noremap g9 $
   nnoremap gd <cmd>Lspsaga goto_definition<cr>zz
   nnoremap go <C-o>zz
 ]]
@@ -128,6 +128,12 @@ local key_mappings = {
     { "<leader>bb", "<cmd>Telescope buffers sort_mru=true<cr>", desc = "Buffers", nowait = false, remap = false },
     { "<leader>bc", "<Cmd>bd!<Cr>", desc = "Close current buffer", nowait = false, remap = false },
 
+    { "<leader>c", group = "Conjure", nowait = false, remap = false },
+    { "<leader>cc", "<cmd>ConjureConnect<cr>", desc = "Connect", nowait = false, remap = false },
+    { "<leader>cd", "<localleader>cd", desc = "Disconnect", nowait = false, remap = true },
+    { "<leader>ci", "<localleader>ci", desc = "Interrupt", nowait = false, remap = true },
+    { "<leader>cq", "<localleader>sq", desc = "Close session", nowait = false, remap = true },
+
     { "<leader>d", group = "Debug", nowait = false, remap = false },
     { "<leader>dc", group = "clog(n)", nowait = false, remap = false },
     { "<leader>dcc", "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClog()<cr><esc>w", desc = "Insert clog", nowait = false, remap = false },
@@ -137,11 +143,14 @@ local key_mappings = {
     { "<leader>dr", "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>", desc = "Remove dbg(n)/clog(n)", nowait = false, remap = false },
 
     { "<leader>e", group = "Eval", nowait = false, remap = false },
+    { "<leader>ma", "<localleader>cm", desc = "Macroexpand All", nowait = false, remap = true },
     { "<leader>eb", "<localleader>eb", desc = "Buffer", nowait = false, remap = true },
     { "<leader>ec", "<localleader>lr", desc = "Clear log", nowait = false, remap = true },
-    { "<leader>ee", "<localleader>ee", desc = "Outer", nowait = false, remap = true },
+    { "<leader>ee", "<localleader>lr<localleader>ee", desc = "Clear&Outer", nowait = false, remap = true },
     { "<leader>ei", "<localleader>ew", desc = "Inner", nowait = false, remap = true },
-    { "<leader>el", "<localleader>ls", desc = "show Log", nowait = false, remap = true },
+    { "<leader>el", "<localleader>ls", desc = "Log window", nowait = false, remap = true },
+    -- { "<leader>emm", "<localleader>em", desc = "Mark", nowait = false, remap = true },
+    { "<leader>eo", "<localleader>ee", desc = "Outer", nowait = false, remap = true },
     { "<leader>er", "<localleader>er", desc = "Root", nowait = false, remap = true },
     { "<leader>et", "<localleader>lg", desc = "Toggle log", nowait = false, remap = true },
 
@@ -170,10 +179,11 @@ local key_mappings = {
     { "<leader>ls", "<cmd>Lspsaga finder<CR>", desc = "Symbol", nowait = false, remap = false },
     { "<leader>lt", "<cmd>Lspsaga open_floaterm<CR>", desc = "Terminal", nowait = false, remap = false },
 
-    { "<leader>m", group = "Macro", nowait = false, remap = false },
-    { "<leader>ma", "<localleader>cm", desc = "Macroexpand All", nowait = false, remap = true },
+    { "<leader>m", group = "Macro/Mark", nowait = false, remap = false },
     { "<leader>m0", "<localleader>c0", desc = "Macroexpand", nowait = false, remap = true },
     { "<leader>m1", "<localleader>c1", desc = "Macroexpand-1", nowait = false, remap = true },
+    { "<leader>ma", "<localleader>cm", desc = "Macroexpand All", nowait = false, remap = true },
+    { "<leader>mm", "mM", desc = "Mark to M", nowait = false, remap = false },
 
     { "<leader>q", "<cmd>qa<CR>", desc = "Quit", nowait = false, remap = false },
     { "<leader>s", "<cmd>update!<CR>", desc = "Save", nowait = false, remap = false },
