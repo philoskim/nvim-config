@@ -5,9 +5,12 @@ local keymap = vim.keymap.set
 vim.cmd [[
   noremap g0 ^
   noremap g2 %
-  noremap g9 $
+  " noremap g9 $
+  noremap g9 g_
   nnoremap gd <cmd>Lspsaga goto_definition<cr>zz
   nnoremap go <C-o>zz
+  noremap H H
+  noremap L L
 ]]
 
 -- visual mode
