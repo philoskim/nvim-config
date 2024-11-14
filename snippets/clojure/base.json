@@ -9,45 +9,34 @@
         "body": ["[debux.cs.core :refer-macros [clog clogn]] $0"],
         "description" : "debux.cs.core"
     },
-    "jsi": {
-        "prefix": ";jsi",
-        "body": ["[applied-science.js-interop :as j]"],
-        "description": "js interop"
-    },
-    "rf": {
-        "prefix": ";rf",
-        "body": ["[re-frame.core :as rf]$0"],
-        "description" : "re-frame"
-    },
-    "rs": {
-        "prefix": ";rs",
-        "body": ["(rf/reg-sub :$0",
-                 "  (fn [db [_ ]]",
-                 "    (get-in db )))"],
-        "description" : "reg-sub"
-    },
-    "red": {
-        "prefix": ";red",
-        "body": ["(rf/reg-event-db :$0",
-                 "  (fn [db [_ ]]",
-                 "    (assoc-in db )))"],
-        "description" : "reg-event-db"
-    },
-    "ref": {
-        "prefix": ";ref",
-        "body": ["(rf/reg-event-fx :$0",
-                 "  (fn [fxes [_ ]]",
-                 "    {}))"],
-        "description" : "reg-event-fx"
-    },
-    "ld": {
+    "dl": {
         "prefix": ";ld",
         "body": ["[philoskim/debux \"0.9.1\"]$0 "],
-        "description" : "lein debux"
+        "description" : "debux lein"
     },
     "dd": {
         "prefix": ";dd",
         "body": ["philoskim/debux {:mvn/version \"0.9.1\"}$0 "],
-        "description" : "deps debux"
+        "description" : "debux deps"
+    },
+    "cs": {
+        "prefix": ";cs",
+        "body": ["[clojure.str :as str]$0"],
+        "description" : "clojure.string"
+    },
+    "hc": {
+        "prefix": ";hc",
+        "body": ["[homi.core :as homi]$0"],
+        "description" : "homi.core"
+    },
+    "jsi": {
+        "prefix": ";jsi",
+        "body": ["[applied-science.js-interop :as j]"],
+        "description": "js-interop"
+    },
+    "ms": {
+        "prefix": ";ms",
+        "body": ["{:malli/schema [:=> [:cat $0] ]}"],
+        "description" : "malli/schema"
     }
 }
