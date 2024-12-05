@@ -1,5 +1,15 @@
-# neovim-config
+= neovim-config
+:stem: latexmath
 
 My neovim configurations
 
-##
+== math examples
+
+stem:[sqrt(4) = 2]
+
+A matrix can be written as stem:[[[a,b\],[c,d\]\]((n),(k))].
+
+[stem]
+++++
+sqrt(4) = 2
+++++
