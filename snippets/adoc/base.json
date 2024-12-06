@@ -2,11 +2,31 @@
     "li": {
         "prefix": ";li",
         "body": ["[listing]\n----\n$0\n----\n"],
-        "description" : "listing"
+        "description": "listing"
     },
     "cd": {
         "prefix": ";cd",
         "body": ["[source]\n----\n$0\n----\n"],
-        "description" : "coding"
+        "description": "coding"
+    },
+    "b": {
+        "prefix": ";b",
+        "body": ["\\b{$0}"],
+        "description": "math inline"
+    },
+    "m": {
+        "prefix": ";m",
+        "body": ["\\($0\\)"],
+        "description": "math inline"
+    },
+    "mi": {
+        "prefix": ";mi",
+        "body": ["\\( $0 \\)"],
+        "description": "math inline"
+    },
+    "md": {
+        "prefix": ";md",
+        "body": ["\\[\n  $0\n\\]"],
+        "description": "math display"
     }
 }

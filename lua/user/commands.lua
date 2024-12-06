@@ -2,16 +2,14 @@ local opt = vim.opt
 
 function init_clojure()
   opt.iskeyword:remove("/")
-
-  opt.tabstop = 2
-  opt.expandtab = true
-  opt.shiftwidth = 2
-  opt.autoindent = true
-  opt.smartindent = true
 end
 
-function init_asciidoc()
-  opt.textwidth = 90
+function set_indent4()
+  opt.tabstop = 4
+  opt.shiftwidth = 4
+end
+
+function remove_ctrl_m()
   vim.cmd [[
     " ^M 지운 후, textwidth에 맞게 한 줄 reformat한다.
     nnoremap <F2> :s/<C-V><C-M>/\r/g<cr> gqj<cr>
@@ -37,6 +35,11 @@ vim.cmd [[
   "  " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
   "augroup END
 
+  augroup trim_spaces
+    autocmd!
+    autocmd BufWritePre * call <SID>trim_trailing_whitespace()
+  augroup END
+
   augroup clojure
     autocmd FileType clojure lua init_clojure()
     autocmd BufWritePost *.clj ConjureEvalFile
@@ -44,17 +47,14 @@ vim.cmd [[
     " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
   augroup END
 
-  augroup asciidoc
-    autocmd FileType asciidoc lua init_asciidoc()
+  augroup indent4
+    autocmd FileType python lua set_indent4()
+    autocmd FileType javascript lua set_indent4()
   augroup END
 
-  augroup plaintex
-    autocmd FileType plaintex lua init_asciidoc()
-  augroup END
-
-  augroup trim_spaces
-    autocmd!
-    autocmd BufWritePre * call <SID>trim_trailing_whitespace()
+  augroup remove_ctrl_m
+    autocmd FileType asciidoc lua remove_ctrl_m()
+    autocmd FileType plaintex lua remove_ctrl_m()
   augroup END
 ]]
 

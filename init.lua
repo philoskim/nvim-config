@@ -6,3 +6,4 @@ require("user.settings")
 require("user.keymaps")
 require("user.vim-plug")
 require("user.lazy-plugins")
+

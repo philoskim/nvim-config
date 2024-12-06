@@ -7,12 +7,13 @@ api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
 g.maplocalleader = ","
 
-opt.tabstop = 4
+opt.tabstop = 2
 opt.expandtab = true
-opt.shiftwidth = 4
+opt.shiftwidth = 2
 opt.autoindent = true
 opt.smartindent = true
 
+opt.textwidth = 90
 opt.termguicolors = true -- Enable colors in terminal
 opt.hlsearch = true --Set highlight on search
 opt.number = true --Make line numbers default
