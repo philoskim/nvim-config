@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+
 function init_clojure()
   opt.iskeyword:remove("/")
 end
@@ -49,7 +50,7 @@ vim.cmd [[
 
   augroup indent4
     autocmd FileType python lua set_indent4()
-    autocmd FileType javascript lua set_indent4()
+    " autocmd FileType javascript lua set_indent4()
   augroup END
 
   augroup remove_ctrl_m

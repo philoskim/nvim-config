@@ -40,3 +40,7 @@ keymap("n", "<M-Down>", "<C-W>j", default_opts)
 
 -- keymap("t", "<ScrollWheelUp>", "<Nop>", default_opts)
 -- keymap("t", "<ScrollWheelDown>", "<Nop>", default_opts)
+
+-- api doc
+keymap("n", "<C-a>", "<cmd>lua require('lsp_signature').toggle_float_win()<CR>", default_opts)
+

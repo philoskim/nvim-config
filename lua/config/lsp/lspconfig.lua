@@ -2,14 +2,14 @@ local spec = {'neovim/nvim-lspconfig'}
 
 local lsp = vim.lsp
 
--- local lsp_signature = require "lsp_signature"
--- lsp_signature.setup {
---   bind = true,
---   handler_opts = {
---     border = "rounded",
---   },
---   toggle_key = '<f5>',
--- }
+local lsp_signature = require "lsp_signature"
+lsp_signature.setup {
+  bind = true,
+  handler_opts = {
+    border = "rounded",
+  },
+  toggle_key = '<C-a>',
+}
 
 local function on_attach(client, bufnr)
   -- Enable completion triggered by <C-X><C-O>

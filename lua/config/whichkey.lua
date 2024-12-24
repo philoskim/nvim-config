@@ -170,7 +170,6 @@ local key_mappings = {
     { "<leader>gt", "<cmd>lua _lazygit_toggle()<cr>", desc = "lazygit Terminal", nowait = false, remap = false },
 
     { "<leader>l", group = "Lsp", nowait = false, remap = false },
-    { "<leader>la", '<cmd>lua require("lsp_signature").toggle_float_win()<CR>', desc = "Api signature", nowait = false, remap = false },
     { "<leader>lc", "<cmd>Lspsaga incoming_calls<CR>", desc = "Call hierachy", nowait = false, remap = false },
     { "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition", nowait = false, remap = false },
     { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
