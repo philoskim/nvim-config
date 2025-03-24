@@ -44,3 +44,10 @@ keymap("n", "<M-Down>", "<C-W>j", default_opts)
 -- api doc
 keymap("n", "<C-a>", "<cmd>lua require('lsp_signature').toggle_float_win()<CR>", default_opts)
 
+-- yank and paste <Cword>
+keymap("n", "<f2>", "yiW", default_opts)
+keymap("i", "<f2>", "<esc>yiW", default_opts)
+keymap("i", "<f3>", "<C-R>+", default_opts)
+keymap("n", "<f3>", '"+p', default_opts)
+
+

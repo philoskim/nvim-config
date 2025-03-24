@@ -3,6 +3,10 @@ local opt = vim.opt
 
 function init_clojure()
   opt.iskeyword:remove("/")
+  opt.iskeyword:append("-")
+  opt.iskeyword:append("_")
+  opt.iskeyword:append("?")
+  opt.iskeyword:append("!")
 end
 
 function set_indent4()

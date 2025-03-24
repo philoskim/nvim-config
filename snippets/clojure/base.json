@@ -38,5 +38,20 @@
         "prefix": ";ms",
         "body": ["{:malli/schema [:=> [:cat $0] ]}"],
         "description" : "malli/schema"
+    },
+    "ex": {
+        "prefix": ";ex",
+        "body": ["(is (true? (e/exists? driver (q/$0))))"],
+        "description" : "etaoin exists"
+    },
+    "wi": {
+        "prefix": ";wi",
+        "body": ["(tu/wait-interval driver)"],
+        "description" : "wait interval"
+    },
+    "ebc": {
+        "prefix": ";ebc",
+        "body": ["$0(is (= tu/error-bgcolor\n(e/get-element-css driver\n(q/select-with-error-css \"\")\n:background-color)))"],
+        "description" : "error bgcolor"
     }
 }
