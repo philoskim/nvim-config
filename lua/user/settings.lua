@@ -29,7 +29,6 @@ opt.clipboard = "unnamedplus" -- Access system clipboard
 opt.timeoutlen = 300 --	Time in milliseconds to wait for a mapped sequence to complete.
 opt.showmode = false -- Do not need to show the mode. We use the statusline instead.
 opt.colorcolumn = '90'
-opt.iskeyword:append("-") -- <cword>에 - 문지 추가
 opt.splitbelow = true
 opt.splitright = true
 opt.wrap = true

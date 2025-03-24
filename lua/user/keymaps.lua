@@ -44,3 +44,13 @@ keymap("n", "<M-Down>", "<C-W>j", default_opts)
 -- api doc
 keymap("n", "<C-a>", "<cmd>lua require('lsp_signature').toggle_float_win()<CR>", default_opts)
 
+-- yank and paste <Cword>
+keymap("n", "<f2>", "yiW", default_opts)
+keymap("i", "<f2>", "<esc>yiW", default_opts)
+keymap("i", "<f3>", "<C-R>+", default_opts)
+keymap("n", "<f3>", '"+p', default_opts)
+
+vim.cmd [[
+  " ^M 지운 후, textwidth에 맞게 한 줄 reformat한다.
+  nnoremap <F5> :s/<C-V><C-M>/\r/g<cr> gqj<cr>
+]]

@@ -3,18 +3,15 @@ local opt = vim.opt
 
 function init_clojure()
   opt.iskeyword:remove("/")
+  opt.iskeyword:append("-")
+  opt.iskeyword:append("_")
+  opt.iskeyword:append("?")
+  opt.iskeyword:append("!")
 end
 
 function set_indent4()
   opt.tabstop = 4
   opt.shiftwidth = 4
-end
-
-function remove_ctrl_m()
-  vim.cmd [[
-    " ^M 지운 후, textwidth에 맞게 한 줄 reformat한다.
-    nnoremap <F2> :s/<C-V><C-M>/\r/g<cr> gqj<cr>
-  ]]
 end
 
 vim.cmd [[
@@ -53,9 +50,8 @@ vim.cmd [[
     " autocmd FileType javascript lua set_indent4()
   augroup END
 
-  augroup remove_ctrl_m
-    autocmd FileType asciidoc lua remove_ctrl_m()
-    autocmd FileType plaintex lua remove_ctrl_m()
-  augroup END
+  "버퍼가 열릴 때 해당 버퍼의 디렉토리로 이동한다.
+  ":terminal 명령을 해당 디렉토리에서 열리도록 하기 위해
+  autocmd BufEnter * silent! lcd %:p:h
 ]]
 
