@@ -14,13 +14,6 @@ function set_indent4()
   opt.shiftwidth = 4
 end
 
-function remove_ctrl_m()
-  vim.cmd [[
-    " ^M 지운 후, textwidth에 맞게 한 줄 reformat한다.
-    nnoremap <F2> :s/<C-V><C-M>/\r/g<cr> gqj<cr>
-  ]]
-end
-
 vim.cmd [[
   function! s:trim_trailing_whitespace() abort
     let l:view = winsaveview()
@@ -55,11 +48,6 @@ vim.cmd [[
   augroup indent4
     autocmd FileType python lua set_indent4()
     " autocmd FileType javascript lua set_indent4()
-  augroup END
-
-  augroup remove_ctrl_m
-    autocmd FileType asciidoc lua remove_ctrl_m()
-    autocmd FileType plaintex lua remove_ctrl_m()
   augroup END
 ]]
 
