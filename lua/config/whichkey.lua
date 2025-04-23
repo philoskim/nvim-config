@@ -198,7 +198,7 @@ local key_mappings = {
     { "<leader>tn", "<cmd>lua _node_toggle()<cr>", desc = "Node", nowait = false, remap = false },
     { "<leader>tp", "<cmd>lua _python_toggle()<cr>", desc = "Python", nowait = false, remap = false },
     { "<leader>tr", "<cmd>lua _ruby_toggle()<cr>", desc = "Ruby", nowait = false, remap = false },
-    -- { "<leader>tt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree", nowait = false, remap = false },
+    { "<leader>tt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree", nowait = false, remap = false },
 
     { "<leader>w", group = "Window", nowait = false, remap = false },
     { "<leader>wH", "<C-w>H", desc = "window to Left", nowait = false, remap = false },

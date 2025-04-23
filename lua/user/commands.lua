@@ -49,9 +49,5 @@ vim.cmd [[
     autocmd FileType python lua set_indent4()
     " autocmd FileType javascript lua set_indent4()
   augroup END
-
-  "버퍼가 열릴 때 해당 버퍼의 디렉토리로 이동한다.
-  ":terminal 명령을 해당 디렉토리에서 열리도록 하기 위해
-  autocmd BufEnter * silent! lcd %:p:h
-]]
+ ]]
 
