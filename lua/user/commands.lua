@@ -40,8 +40,8 @@ vim.cmd [[
 
   augroup clojure
     autocmd FileType clojure lua init_clojure()
-    autocmd BufWritePost *.clj ConjureEvalFile
-    autocmd BufWritePost *.cljc ConjureEvalFIle
+    autocmd BufWritePost *.clj ConjureEvalBuf
+    autocmd BufWritePost *.cljc ConjureEvalBuf
     " autocmd BufEnter *.clj noremap <buffer> <2-RightMouse> IcedEvalOuterTopList
   augroup END
 
@@ -49,5 +49,19 @@ vim.cmd [[
     autocmd FileType python lua set_indent4()
     " autocmd FileType javascript lua set_indent4()
   augroup END
+
+  function! ScreenCapture()
+    let array = []
+    for i in range(1, &lines)
+        let row = ''
+        for j in range(1, &columns)
+            let row .= nr2char(screenchar(i, j))
+        endfor
+        call add(array, row)
+    endfor
+    tabnew
+    call setline('$', array)
+  endfunction
+  command! ScreenCapture :call ScreenCapture()
  ]]
 

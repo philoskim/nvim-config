@@ -28,5 +28,10 @@
         "prefix": ";md",
         "body": ["\\[\n  $0\n\\]"],
         "description": "math display"
+    },
+    "fl": {
+      "prefix": ";fl",
+      "body": ["[cols=\"1a,1a\"]\n|===\n^|fennel ^|lua\n\n|\n[source]\n----\n$0\n----\n\n|\n[source]\n----\n\n----\n|==="],
+      "description": "fennel to lua"
     }
 }
