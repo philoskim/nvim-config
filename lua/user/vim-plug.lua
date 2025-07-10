@@ -19,7 +19,7 @@ vim.cmd([=[
     Plug 'natebosch/vim-lsc-dart'
   call plug#end()
 
-  let g:sexp_enable_insert_mode_mappings = 0
+  let g:sexp_enable_insert_mode_mappings = 1
   let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
 
   " Enable vim-iced's default key mapping

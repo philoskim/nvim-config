@@ -45,3 +45,5 @@ lazy.setup {
     }
 }
 
+-- lazy.nvim local repository path: ~/.local/share/nvim/lazy/
+
