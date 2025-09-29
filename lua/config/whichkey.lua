@@ -191,9 +191,9 @@ local key_mappings = {
   { "<leader>lt",  "<cmd>Lspsaga open_floaterm<CR>",                                                                             desc = "Terminal",              nowait = false, remap = false },
 
   { "<leader>m",   group = "Macro/Mark",                                                                                         nowait = false,                 remap = false },
-  { "<leader>m0",  "<localleader>c0",                                                                                            desc = "Macroexpand",           nowait = false, remap = true },
-  { "<leader>m1",  "<localleader>c1",                                                                                            desc = "Macroexpand-1",         nowait = false, remap = true },
-  { "<leader>ma",  "<localleader>cm",                                                                                            desc = "Macroexpand All",       nowait = false, remap = true },
+  { "<leader>m1",  "<localleader>x1",                                                                                            desc = "Macroexpand-1",         nowait = false, remap = true },
+  { "<leader>mr",  "<localleader>xr",                                                                                            desc = "Macroexpand",           nowait = false, remap = true },
+  { "<leader>ma",  "<localleader>xa",                                                                                            desc = "Macroexpand All",       nowait = false, remap = true },
   { "<leader>mm",  "mM",                                                                                                         desc = "Mark to M",             nowait = false, remap = false },
 
   { "<leader>q",   "<cmd>qa<CR>",                                                                                                desc = "Quit",                  nowait = false, remap = false },

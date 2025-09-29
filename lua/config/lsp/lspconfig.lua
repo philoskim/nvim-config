@@ -72,23 +72,23 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 spec.init = function()
-  require('lspconfig')['pyright'].setup({
+  vim.lsp.config('pyright', {
       on_attach = on_attach,
       capabilities = capabilities,
       flags = lsp_flags,
   })
 
-  require('lspconfig')['ts_ls'].setup{
+  vim.lsp.config('ts_ls', {
       on_attach = on_attach,
       capabilities = capabilities,
       flags = lsp_flags,
-  }
+  })
 
-  require('lspconfig')['clojure_lsp'].setup{
+  vim.lsp.config('clojure_lsp', {
       on_attach = on_attach,
       capabilities = capabilities,
       flags = lsp_flags,
-  }
+  })
 
   lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",

@@ -29,7 +29,6 @@ local Plugins = {
       return cmp.setup(config)
     end,
   },
-  { 'walterl/conjure-macroexpand' },
 
   {'mhinz/vim-startify'},
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
