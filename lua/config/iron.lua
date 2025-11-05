@@ -34,6 +34,7 @@ spec.init = function()
       send_paragraph = "<localleader>sp",
       visual_send = "<localleader>sv",
       send_file = "<localleader>sf",
+      clear = "<localleader>sc",
     },
   })
 
