@@ -200,6 +200,8 @@ local key_mappings = {
 
   { "<leader>q", "<cmd>qa<CR>", desc = "Quit", nowait = false, remap = false },
 
+  { "<leader>r", "<cmd>IronRepl<CR>", desc = "Repl toggle", nowait = false, remap = false },
+
   { "<leader>s", "<cmd>update!<CR>", desc = "Save", nowait = false, remap = false },
 
   { "<leader>t", group = "Toggle Window", nowait = false, remap = false },
