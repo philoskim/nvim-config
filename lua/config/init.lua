@@ -47,6 +47,7 @@ local Plugins = {
     -- colorscheme
   {'martinsione/darkplus.nvim',
    init = function() vim.cmd "colorscheme darkplus" end},
+
 }
 
 return Plugins
