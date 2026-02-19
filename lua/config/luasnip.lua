@@ -15,10 +15,12 @@ spec.init = function()
   vscode.lazy_load()
   vscode.lazy_load { paths = { "./snippets/clojure" } }
   vscode.lazy_load { paths = { "./snippets/javascript" } }
+  vscode.lazy_load { paths = { "./snippets/typescript" } }
   vscode.lazy_load { paths = { "./snippets/python" } }
   vscode.lazy_load { paths = { "./snippets/adoc" } }
 
-  luasnip.filetype_extend("all", { "_" })
+  luasnip.filetype_extend("typescriptreact", { "typescript", "javascript", "html" })
+  -- luasnip.filetype_extend("all", { "_" })
 end
 
 return spec

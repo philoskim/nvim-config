@@ -159,6 +159,7 @@ local key_mappings = {
   { "<leader>ee",  "<localleader>lr<localleader>ee", desc = "Clear&Outer",
     nowait = false, remap = true },
   { "<leader>ei",  "<localleader>ew", desc = "Inner", nowait = false, remap = true },
+  { "<leader>eI",  "<localleader>ei", desc = "Iterrupt", nowait = false, remap = true },
   { "<leader>el",  "<localleader>ls", desc = "Log window", nowait = false, remap = true },
   -- { "<leader>emm", "<localleader>em", desc = "Mark", nowait = false, remap = true },
   { "<leader>eo",  "<localleader>ee", desc = "Outer", nowait = false, remap = true },

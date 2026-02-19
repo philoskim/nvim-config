@@ -2,7 +2,7 @@ local spec = {
     "Olical/conjure",
     lazy = true,
     dependencies = { "PaterJason/cmp-conjure" },
-    ft = { "clojure", "fennel", 'lua', "python", "sql" },
+    ft = { "clojure", "fennel", 'lua', "python", "sql", "javascript", "typescript" },
 }
 
 spec.init = function ()

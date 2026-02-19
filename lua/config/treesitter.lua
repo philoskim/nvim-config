@@ -3,7 +3,7 @@ local spec = {'nvim-treesitter/nvim-treesitter'}
 spec.init = function()
   require("nvim-treesitter.configs").setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = {'python', 'javascript', 'clojure'},
+    ensure_installed = {'python', 'javascript', 'typescript', 'clojure'},
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,

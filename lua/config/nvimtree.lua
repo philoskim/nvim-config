@@ -31,7 +31,9 @@ spec.opts = {
     width = 30,
   },
   filters = {
-    custom = {".git"},
+    custom = {"^.git$"},
+    dotfiles = true,
+    git_ignored = true,
   },
   actions = {
     open_file = {

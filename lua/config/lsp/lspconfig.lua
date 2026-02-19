@@ -90,6 +90,13 @@ spec.init = function()
       flags = lsp_flags,
   })
 
+  vim.lsp.config('ruby_lsp', {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      flags = lsp_flags,
+      -- ruby_lsp는 프로젝트 루트의 .ruby-version이나 Gemfile을 기준으로 작동합니다.
+  })
+
   lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
   })
