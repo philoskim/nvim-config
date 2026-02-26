@@ -91,6 +91,7 @@ spec.init = function()
   })
 
   vim.lsp.config('ruby_lsp', {
+      cmd = { "bundle", "exec", "ruby-lsp" },
       on_attach = on_attach,
       capabilities = capabilities,
       flags = lsp_flags,
