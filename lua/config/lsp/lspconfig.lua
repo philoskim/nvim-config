@@ -55,10 +55,10 @@ local function on_attach(client, bufnr)
     virtual_text = false,
     --severity_sort = true,
     float = {
-        show_header = true,
-        source = 'if_many',
-        border = 'rounded',
-        focusable = true,
+      show_header = true,
+      source = 'if_many',
+      border = 'rounded',
+      focusable = true,
     },
   })
 end
@@ -73,34 +73,60 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 spec.init = function()
   vim.lsp.config('pyright', {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
   })
 
   vim.lsp.config('ts_ls', {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
   })
 
   vim.lsp.config('clojure_lsp', {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      flags = lsp_flags,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
   })
 
   vim.lsp.config('ruby_lsp', {
-      cmd = { "bundle", "exec", "ruby-lsp" },
-      on_attach = on_attach,
-      capabilities = capabilities,
-      flags = lsp_flags,
-      -- ruby_lsp는 프로젝트 루트의 .ruby-version이나 Gemfile을 기준으로 작동합니다.
+    cmd = { "/Users/philos/.rbenv/shims/ruby-lsp" },
+    filetypes = { "ruby", "eruby" },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+    init_options = {
+      formatter = "auto",
+    },
   })
+  vim.lsp.enable('ruby_lsp')
+
+  vim.lsp.config('dartls', {
+    cmd = { 'dart', 'language-server', '--protocol=lsp' },
+
+    filetypes = { 'dart' },
+
+    root_markers = {
+      'pubspec.yaml',
+      '.git',
+    },
+  })
+  vim.lsp.enable('dartls')
+
 
   lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
   })
+
+  -- lspsaga NO_RESULT_CALLBACK_FOUND 에러 메시지 숨김
+  local notify = vim.notify
+  vim.notify = function(msg, ...)
+    if type(msg) == "string" and msg:match("NO_RESULT_CALLBACK_FOUND") then
+      return
+    end
+    return notify(msg, ...)
+  end
 end
 
 return spec

@@ -6,6 +6,7 @@ local opt = vim.opt
 api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader = " "
 g.maplocalleader = ","
+opt.regexpengine = 1
 
 opt.autoindent = true
 opt.smartindent = true

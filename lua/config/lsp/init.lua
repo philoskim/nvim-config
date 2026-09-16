@@ -33,6 +33,12 @@ local plugins = {
        left_width = 0.3,
        right_width = 0.9,
      },
+     diagnostic = {
+       diagnostic_only_current = true,
+     },
+     lightbulb = {
+       enable = false,
+     },
    },
   },
 

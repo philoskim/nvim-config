@@ -5,18 +5,12 @@ vim.cmd([=[
     Plug 'monkoose/matchparen.nvim'
 
     Plug 'guns/vim-sexp', {'for': 'clojure'}
-    Plug 'philoskim/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+    Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
 
     "Plug 'liquidz/vim-iced', {'for': 'clojure'}
     "Plug 'liquidz/vim-iced-multi-session', {'for': 'clojure'}
-
-    " Dart/Flutter
-    Plug 'dart-lang/dart-vim-plugin'
-    Plug 'thosakwe/vim-flutter'
-    Plug 'natebosch/vim-lsc'
-    Plug 'natebosch/vim-lsc-dart'
   call plug#end()
 
   let g:sexp_enable_insert_mode_mappings = 0
