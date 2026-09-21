@@ -2,11 +2,8 @@ local spec = {
     "hrsh7th/nvim-cmp",
     dependencies = {
         "hrsh7th/cmp-buffer",
-        -- "hrsh7th/cmp-path",
+        "hrsh7th/cmp-path",
         "hrsh7th/cmp-nvim-lua",
-        -- "hrsh7th/cmp-nvim-lsp-signature-help",
-        -- "ray-x/cmp-treesitter",
-        -- "hrsh7th/cmp-cmdline",
         "saadparwaiz1/cmp_luasnip",
     },
 }
@@ -76,7 +73,6 @@ spec.init = function()
       end, {
         "i",
         "s",
-        "c",
       }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -89,7 +85,6 @@ spec.init = function()
       end, {
         "i",
         "s",
-        "c",
       }),
     },
     sources = {
@@ -101,21 +96,6 @@ spec.init = function()
       { name = "nvim_lua" },
     },
   }
-
-  cmp.setup.cmdline("/", {
-    sources = {
-      { name = "buffer" },
-    },
-  })
-
-  -- Use cmdline & path source for ':'
-  cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
 end
 
 return spec

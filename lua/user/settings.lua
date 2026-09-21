@@ -36,6 +36,10 @@ opt.splitright = true
 opt.wrap = true
 opt.updatetime=300
 
+opt.wildmenu = true
+opt.wildmode = "longest:full,full"
+opt.exrc = true
+
 -- Highlight on yank
 vim.cmd [[
   augroup YankHighlight

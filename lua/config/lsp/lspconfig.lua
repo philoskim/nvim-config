@@ -102,19 +102,6 @@ spec.init = function()
   })
   vim.lsp.enable('ruby_lsp')
 
-  vim.lsp.config('dartls', {
-    cmd = { 'dart', 'language-server', '--protocol=lsp' },
-
-    filetypes = { 'dart' },
-
-    root_markers = {
-      'pubspec.yaml',
-      '.git',
-    },
-  })
-  vim.lsp.enable('dartls')
-
-
   lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
   })
