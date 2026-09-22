@@ -1,4 +1,4 @@
---- global key bindings
+-- global key bindings
 local keymap = vim.keymap.set
 local api = vim.api
 
@@ -70,6 +70,18 @@ function printEval()
   ]]
 end
 
+--   range_format = function()
+--     local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+--     local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+--     vim.lsp.buf.format({
+--       range = {
+--         ["start"] = { start_row, 0 },
+--         ["end"] = { end_row, 0 },
+--       },
+--       async = true,
+--     })
+--   end
+
 
 -- normal and visual mode
 vim.cmd [[
@@ -135,6 +147,7 @@ local key_mappings = {
   { "<leader>ei",  "<localleader>ew", desc = "Inner", nowait = false, remap = true },
   { "<leader>eI",  "<localleader>ei", desc = "Iterrupt", nowait = false, remap = true },
   { "<leader>el",  "<localleader>ls", desc = "Log window", nowait = false, remap = true },
+  -- { "<leader>emm", "<localleader>em", desc = "Mark", nowait = false, remap = true },
   { "<leader>eo",  "<localleader>ee", desc = "Outer", nowait = false, remap = true },
   { "<leader>er",  "<localleader>er", desc = "Root", nowait = false, remap = true },
   { "<leader>et",  "<localleader>lg", desc = "Toggle log", nowait = false, remap = true },
@@ -144,290 +157,219 @@ local key_mappings = {
     desc = "Curr buf grep", nowait = false, remap = false },
   { "<leader>fG",  "<cmd>lua require('telescope.builtin').grep_string{search=''}<cr>",
     desc = "Grep", nowait = false, remap = false },
-  { "<leader>fb",
-    "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find {default_text=vim.fn.expand('<cword>')}<cr>",
-    desc = "Curr buf cword", nowait = false, remap = false },
-  { "<leader>ff", "<cmd>Telescope find_files<cr>",
-    desc = "Files", nowait = false, remap = false },
-  { "<leader>fg", "<cmd>Telescope grep_string<cr>",
-    desc = "Grep cword", nowait = false, remap = false },
+  { "<leader>fb", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find {default_text=vim.fn.expand('<cword>')}<cr>",
+ desc = "Curr buf cword", nowait = false, remap = false },
+  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files", nowait = false, remap = false },
+  { "<leader>fg", "<cmd>Telescope grep_string<cr>", desc = "Grep cword", nowait = false, remap = false },
+  { "<leader>f", "<cmd>Telescope resume<cr>", desc = "Resume", nowait = false, remap = false },
 
   { "<leader>g", group = "Git", nowait = false, remap = false },
-  { "<leader>gb", "<cmd>GitBlameToggle<cr>",
-    desc = "Blame", nowait = false, remap = false },
-  { "<leader>gt", "<cmd>lua _lazygit_toggle()<cr>",
-    desc = "lazygit Terminal", nowait = false, remap = false },
+  { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame", nowait = false, remap = false },
+  { "<leader>gt", "<cmd>lua _lazygit_toggle()<cr>", desc = "lazygit Terminal", nowait = false, remap = false },
 
   { "<leader>l", group = "Lsp", nowait = false, remap = false },
-  { "<leader>lc", "<cmd>Lspsaga incoming_calls<CR>",
-    desc = "Call hierachy", nowait = false, remap = false },
-  { "<leader>ld", "<cmd>Lspsaga peek_definition<CR>",
-    desc = "Peek definition", nowait = false, remap = false },
-  { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>",
-    desc = "Format", nowait = false, remap = false },
-  { "<leader>lg", "<cmd>Lspsaga show_line_diagnostics<CR>",
-    desc = "diaGnostics", nowait = false, remap = false },
-  { "<leader>lh", "<cmd>Lspsaga hover_doc<CR>",
-    desc = "Hover doc", nowait = false, remap = false },
-  { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>",
-    desc = "Implementation", nowait = false, remap = false },
-  { "<leader>lo", "<cmd>Lspsaga outline<CR>",
-    desc = "Outline", nowait = false, remap = false },
-  { "<leader>lr", "<cmd>Lspsaga rename<CR>",
-    desc = "Rename", nowait = false, remap = false },
-  { "<leader>ls", "<cmd>Lspsaga finder<CR>",
-    desc = "Symbol", nowait = false, remap = false },
-  { "<leader>lt", "<cmd>Lspsaga open_floaterm<CR>",
-    desc = "Terminal", nowait = false, remap = false },
+  { "<leader>lc", "<cmd>Lspsaga incoming_calls<CR>", desc = "Call hierachy", nowait = false, remap = false },
+  { "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition", nowait = false, remap = false },
+  { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
+  { "<leader>lg", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "diaGnostics", nowait = false, remap = false },
+  { "<leader>lh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover doc", nowait = false, remap = false },
+  { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Implementation", nowait = false, remap = false },
+  { "<leader>lo", "<cmd>Lspsaga outline<CR>", desc = "Outline", nowait = false, remap = false },
+  { "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Rename", nowait = false, remap = false },
+  { "<leader>ls", "<cmd>Lspsaga finder<CR>", desc = "Symbol", nowait = false, remap = false },
+  { "<leader>lt", "<cmd>Lspsaga open_floaterm<CR>", desc = "Terminal", nowait = false, remap = false },
 
   { "<leader>m", group = "Macro/Mark", nowait = false, remap = false },
-  { "<leader>m1", "<localleader>x1",
-    desc = "Macroexpand-1", nowait = false, remap = true },
-  { "<leader>mr", "<localleader>xr",
-    desc = "Macroexpand", nowait = false, remap = true },
-  { "<leader>ma", "<localleader>xa",
-    desc = "Macroexpand All", nowait = false, remap = true },
-  { "<leader>mm", "mM",
-    desc = "Mark to M", nowait = false, remap = false },
+  { "<leader>m1", "<localleader>x1", desc = "Macroexpand-1", nowait = false, remap = true },
+  { "<leader>mr", "<localleader>xr", desc = "Macroexpand", nowait = false, remap = true },
+  { "<leader>ma", "<localleader>xa", desc = "Macroexpand All", nowait = false, remap = true },
+  { "<leader>mm", "mM", desc = "Mark to M", nowait = false, remap = false },
 
-  { "<leader>q", "<cmd>qa<CR>",
-    desc = "Quit", nowait = false, remap = false },
+  { "<leader>q", "<cmd>qa<CR>", desc = "Quit", nowait = false, remap = false },
 
-  { "<leader>r", "<cmd>IronRepl<CR>",
-    desc = "Repl toggle", nowait = false, remap = false },
+  { "<leader>r", "<cmd>IronRepl<CR>", desc = "Repl toggle", nowait = false, remap = false },
 
-  { "<leader>s", "<cmd>update!<CR>",
-    desc = "Save", nowait = false, remap = false },
+  { "<leader>s", "<cmd>update!<CR>", desc = "Save", nowait = false, remap = false },
 
   { "<leader>t", group = "Toggle Window", nowait = false, remap = false },
-  { "<leader>tb", "<cmd>lua _bash_toggle()<cr>",
-    desc = "Bash", nowait = false, remap = false },
-  { "<leader>tc", "<cmd>lua _clojure_toggle()<cr>",
-    desc = "Clojure", nowait = false, remap = false },
-  { "<leader>tl", "<cmd>lua _clojure2_toggle()<cr>",
-    desc = "Clojure", nowait = false, remap = false },
-  { "<leader>th", "<cmd>lua _haskell_toggle()<cr>",
-    desc = "Haskell", nowait = false, remap = false },
-  { "<leader>tn", "<cmd>lua _node_toggle()<cr>",
-    desc = "Node", nowait = false, remap = false },
-  { "<leader>tp", "<cmd>lua _python_toggle()<cr>",
-    desc = "Python", nowait = false, remap = false },
-  { "<leader>tr", "<cmd>lua _ruby_toggle()<cr>",
-    desc = "Ruby", nowait = false, remap = false },
-  { "<leader>tt", "<cmd>NvimTreeToggle<cr>",
-    desc = "NvimTree", nowait = false, remap = false },
+  { "<leader>tb", "<cmd>lua _bash_toggle()<cr>", desc = "Bash", nowait = false, remap = false },
+  { "<leader>tc", "<cmd>lua _clojure_toggle()<cr>", desc = "Clojure", nowait = false, remap = false },
+  { "<leader>tl", "<cmd>lua _clojure2_toggle()<cr>", desc = "Clojure", nowait = false, remap = false },
+  { "<leader>th", "<cmd>lua _haskell_toggle()<cr>", desc = "Haskell", nowait = false, remap = false },
+  { "<leader>tn", "<cmd>lua _node_toggle()<cr>", desc = "Node", nowait = false, remap = false },
+  { "<leader>tp", "<cmd>lua _python_toggle()<cr>", desc = "Python", nowait = false, remap = false },
+  { "<leader>tr", "<cmd>lua _ruby_toggle()<cr>", desc = "Ruby", nowait = false, remap = false },
+  { "<leader>tt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree", nowait = false, remap = false },
 
   { "<leader>w", group = "Window", nowait = false, remap = false },
-  { "<leader>wH", "<C-w>H",
-    desc = "window to Left", nowait = false, remap = false },
-  { "<leader>wJ", "<C-w>J",
-    desc = "window to Lower", nowait = false, remap = false },
-  { "<leader>wK", "<C-w>K",
-    desc = "window to Upper", nowait = false, remap = false },
-  { "<leader>wL", "<C-w>L",
-    desc = "window to Right", nowait = false, remap = false },
-  { "<leader>wc", "<C-w>c",
-    desc = "Close window", nowait = false, remap = false },
-  { "<leader>wh", "<C-w>h",
-    desc = "to Left window", nowait = false, remap = false },
-  { "<leader>wj", "<C-w>j",
-    desc = "to Lower window", nowait = false, remap = false },
-  { "<leader>wk", "<C-w>k",
-    desc = "to Upper window", nowait = false, remap = false },
-  { "<leader>wl", "<C-w>l",
-    desc = "to Right window", nowait = false, remap = false },
-  { "<leader>ws", "<cmd>split<cr>",
-    desc = "Split window", nowait = false, remap = false },
-  { "<leader>wv", "<cmd>vsplit<cr>",
-    desc = "Vsplit window", nowait = false, remap = false },
-}
--- Clojure buffer
-local clojure_key_mappings = {
-  {
-    "<leader>d",
-    group = "Debug",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
-  {
-    "<leader>dc",
-    group = "clog(n)",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
-  {
-    "<leader>dcc",
-    "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClog()<cr><esc>w",
-    desc = "Insert clog",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
-  {
-    "<leader>dcn",
-    "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClogn()<cr><esc>w",
-    desc = "Insert clogn",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
-  {
-    "<leader>dd",
-    "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>w",
-    desc = "Insert dbg/clog",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
-  {
-    "<leader>dn",
-    "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>w",
-    desc = "Insert dbgn/clogn",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
-  {
-    "<leader>dr",
-    "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>",
-    desc = "Remove dbg(n)/clog(n)",
-    cond = function()
-      return vim.bo.filetype == "clojure"
-    end,
-  },
+  { "<leader>wH", "<C-w>H", desc = "window to Left", nowait = false, remap = false },
+  { "<leader>wJ", "<C-w>J", desc = "window to Lower", nowait = false, remap = false },
+  { "<leader>wK", "<C-w>K", desc = "window to Upper", nowait = false, remap = false },
+  { "<leader>wL", "<C-w>L", desc = "window to Right", nowait = false, remap = false },
+  { "<leader>wc", "<C-w>c", desc = "Close window", nowait = false, remap = false },
+  { "<leader>wh", "<C-w>h", desc = "to Left window", nowait = false, remap = false },
+  { "<leader>wj", "<C-w>j", desc = "to Lower window", nowait = false, remap = false },
+  { "<leader>wk", "<C-w>k", desc = "to Upper window", nowait = false, remap = false },
+  { "<leader>wl", "<C-w>l", desc = "to Right window", nowait = false, remap = false },
+  { "<leader>ws", "<cmd>split<cr>", desc = "Split window", nowait = false, remap = false },
+  { "<leader>wv", "<cmd>vsplit<cr>", desc = "Vsplit window", nowait = false, remap = false },
 }
 
+api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function(args)
+    local buf = args.buf
+    local ft = vim.bo[buf].filetype
 
--- Other buffers
-local debugger_key_mappings = {
-  {
-    "<leader>d",
-    group = "Debugger",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>dt",
-    function()
-      require("dap").toggle_breakpoint()
-    end,
-    desc = "Toggle Breakpoint",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>dc",
-    function()
-      require("dap").continue()
-    end,
-    desc = "Continue",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>di",
-    function()
-      require("dap").step_into()
-    end,
-    desc = "Step Into",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>do",
-    function()
-      require("dap").step_over()
-    end,
-    desc = "Step Over",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>du",
-    function()
-      require("dap").step_out()
-    end,
-    desc = "Step Out",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>dr",
-    function()
-      require("dap").repl.open()
-    end,
-    desc = "Open REPL",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>dl",
-    function()
-      require("dap").run_last()
-    end,
-    desc = "Run Last",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>dq",
-    function()
-      require("dap").terminate()
-      require("dapui").close()
-      require("nvim-dap-virtual-text").toggle()
-    end,
-    desc = "Terminate",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>db",
-    function()
-      require("dap").list_breakpoints()
-    end,
-    desc = "List Breakpoints",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-  {
-    "<leader>de",
-    function()
-      require("dap").set_exception_breakpoints({ "all" })
-    end,
-    desc = "Set Exception Breakpoints",
-    cond = function()
-      return vim.bo.filetype ~= "clojure"
-    end,
-  },
-}
+    if ft == "clojure" then
+      -- Clojure Debug mappings
+      keymap("n", "<leader>d", "<Nop>", {
+        buffer = buf,
+        desc = "Debux",
+      })
 
+      keymap("n", "<leader>dc", "<Nop>", {
+        buffer = buf,
+        desc = "clog(n)",
+      })
+
+      keymap(
+        "n",
+        "<leader>dcc",
+        "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClog()<cr><esc>w",
+        {
+          buffer = buf,
+          desc = "Insert clog",
+        }
+      )
+
+      keymap(
+        "n",
+        "<leader>dcn",
+        "<plug>(sexp_round_head_wrap_element)<cmd>lua insertClogn()<cr><esc>w",
+        {
+          buffer = buf,
+          desc = "Insert clogn",
+        }
+      )
+
+      keymap(
+        "n",
+        "<leader>dd",
+        "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbg()<cr><esc>w",
+        {
+          buffer = buf,
+          desc = "Insert dbg/clog",
+        }
+      )
+
+      keymap(
+        "n",
+        "<leader>dn",
+        "<plug>(sexp_round_head_wrap_element)<cmd>lua insertDbgn()<cr><esc>w",
+        {
+          buffer = buf,
+          desc = "Insert dbgn/clogn",
+        }
+      )
+
+      keymap(
+        "n",
+        "<leader>dr",
+        "<plug>(sexp_raise_element)<cmd>lua removeDbg()<cr>",
+        {
+          buffer = buf,
+          desc = "Remove dbg(n)/clog(n)",
+        }
+      )
+
+    else
+      -- DAP Debugger mappings
+      keymap("n", "<leader>d", "<Nop>", {
+        buffer = buf,
+        desc = "Dap",
+      })
+
+      keymap("n", "<leader>db", function()
+        require("dap").list_breakpoints()
+      end, {
+        buffer = buf,
+        desc = "List Breakpoints",
+      })
+
+      keymap("n", "<leader>dc", function()
+        require("dap").continue()
+      end, {
+        buffer = buf,
+        desc = "Continue",
+      })
+
+      keymap("n", "<leader>de", function()
+        require("dap").set_exception_breakpoints({ "all" })
+      end, {
+        buffer = buf,
+        desc = "Set Exception Breakpoints",
+      })
+
+      keymap("n", "<leader>di", function()
+        require("dap").step_into()
+      end, {
+        buffer = buf,
+        desc = "Step Into",
+      })
+
+      keymap("n", "<leader>dl", function()
+        require("dap").run_last()
+      end, {
+        buffer = buf,
+        desc = "Run Last",
+      })
+
+      keymap("n", "<leader>do", function()
+        require("dap").step_over()
+      end, {
+        buffer = buf,
+        desc = "Step Over",
+      })
+
+      keymap("n", "<leader>dq", function()
+        require("dap").terminate()
+        require("dapui").close()
+        require("nvim-dap-virtual-text").toggle()
+      end, {
+        buffer = buf,
+        desc = "Terminate",
+      })
+
+      keymap("n", "<leader>dr", function()
+        require("dap").repl.open()
+      end, {
+        buffer = buf,
+        desc = "Open REPL",
+      })
+
+      keymap("n", "<leader>dt", function()
+        require("dap").toggle_breakpoint()
+      end, {
+        buffer = buf,
+        desc = "Toggle Breakpoint",
+      })
+
+      keymap("n", "<leader>du", function()
+        require("dap").step_out()
+      end, {
+        buffer = buf,
+        desc = "Step Out",
+      })
+    end
+  end,
+})
 
 local spec = {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    spec = {
-      -- existing global mappings
-      unpack(key_mappings),
-
-      -- Clojure-specific debug mappings
-      unpack(clojure_key_mappings),
-
-      -- DAP mappings for non-Clojure buffers
-      unpack(debugger_key_mappings),
-    },
+    spec = key_mappings,
   },
 }
 
